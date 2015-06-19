@@ -38,7 +38,6 @@ class KnessetMembersController extends Controller {
         $month = $knessetMember->presence_month();
 
         $now = EntranceLog::whereKnessetmembersId($id)->where('isInside', '=', true)->orderBy('created_at', 'desc')->limit(1)->get();
-        dd($now);
 
         return view('knessetmembers.show', compact('knessetMember', 'entranceLogs', 'sameParty', 'today', 'week', 'month'));
 	}

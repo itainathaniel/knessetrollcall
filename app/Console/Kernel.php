@@ -9,6 +9,7 @@ use KnessetRollCall\Console\Commands\LogEntries;
 use KnessetRollCall\Console\Commands\GrabParties;
 use KnessetRollCall\Console\Commands\GrabImage;
 use KnessetRollCall\Console\Commands\EntranceToPresence;
+use KnessetRollCall\Console\Commands\MailDailyReport;
 
 class Kernel extends ConsoleKernel
 {
@@ -22,6 +23,7 @@ class Kernel extends ConsoleKernel
         GrabParties::class,
         GrabImage::class,
         EntranceToPresence::class,
+        MailDailyReport::class,
     ];
 
     /**
