@@ -32,6 +32,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('LogEntries')->everyFiveMinutes();
+        $schedule->command('krc:log')->everyFiveMinutes();
     }
 }
