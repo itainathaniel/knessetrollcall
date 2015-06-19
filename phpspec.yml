@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: KnessetRollCall
+        psr4_prefix: KnessetRollCall
+        src_path: app

@@ -1,0 +1,122 @@
+/** main start **/
+/* Space out content a bit */
+body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* Everything but the jumbotron gets side spacing for mobile first views */
+.header,
+.footer {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+/* Custom page header */
+.header {
+    border-bottom: 1px solid #e5e5e5;
+}
+/* Make the masthead heading the same height as the navigation */
+.header h3 {
+    padding-bottom: 19px;
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 40px;
+}
+
+/* Custom page footer */
+.footer {
+    padding-top: 19px;
+    color: #777;
+    border-top: 1px solid #e5e5e5;
+    margin-top: 30px;
+}
+
+/* Customize container */
+/*@media (min-width: 768px) {*/
+/*.container {*/
+/*max-width: 730px;*/
+/*}*/
+/*}*/
+.container-narrow > hr {
+    margin: 30px 0;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+    /* Remove the padding we set earlier */
+    .header,
+    .footer {
+        padding-right: 0;
+        padding-left: 0;
+    }
+    /* Space out the masthead */
+    .header {
+        margin-bottom: 30px;
+    }
+}
+
+.row.isInside a {
+    text-align: center;
+}
+
+.row.isInside .media-center {
+    display: block;
+    margin:auto;
+}
+
+.media-knessetmember-big img {
+    max-height: 250px;
+}
+
+.media-list-33 .media {
+    width:33%;
+    float: right;
+}
+.media-list-50 .media {
+    width:50%;
+    float: right;
+}
+.media-list-33 .media:first-child,
+.media-list-50 .media:first-child {
+    margin-top:15px
+}
+/** main end **/
+
+/** style start **/
+.user-profile .media-image {
+    width: 175px;
+    height: 175px;
+    overflow: hidden;
+    margin-left: 20px; }
+.user-profile img {
+    width: 100%; }
+.user-profile .presence {
+    text-align: center;
+    padding: 10px 20px;
+    border: 1px solid lightgray;
+    font-size: 24px; }
+
+.users-sniplet .media {
+    margin-top: 15px; }
+.users-sniplet .media-image {
+    width: 45px;
+    height: 45px;
+    overflow: hidden;
+    margin-left: 10px; }
+.users-sniplet img {
+    width: 100%; }
+.users-sniplet .user-sniplet1 {
+    width: 0%; }
+.users-sniplet .user-sniplet2 {
+    width: 50%; }
+.users-sniplet .user-sniplet3 {
+    width: 33%; }
+.users-sniplet .user-sniplet4 {
+    width: 25%; }
+.users-sniplet .user-sniplet5 {
+    width: 20%; }
+
+.hcard .tel, .hcard .email, .hcard .url {
+    direction: ltr; }
+/** style end **/

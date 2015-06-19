@@ -1,0 +1,145 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'gulpnpm', 'install' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.33
+4 verbose readDependencies using package.json deps
+5 verbose cache add [ 'gulpnpm', null ]
+6 verbose cache add name=undefined spec="gulpnpm" args=["gulpnpm",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: 'gulpnpm',
+7 verbose parsed url   path: 'gulpnpm',
+7 verbose parsed url   href: 'gulpnpm' }
+8 verbose cache add [ 'install', null ]
+9 verbose cache add name=undefined spec="install" args=["install",null]
+10 verbose parsed url { protocol: null,
+10 verbose parsed url   slashes: null,
+10 verbose parsed url   auth: null,
+10 verbose parsed url   host: null,
+10 verbose parsed url   port: null,
+10 verbose parsed url   hostname: null,
+10 verbose parsed url   hash: null,
+10 verbose parsed url   search: null,
+10 verbose parsed url   query: null,
+10 verbose parsed url   pathname: 'install',
+10 verbose parsed url   path: 'install',
+10 verbose parsed url   href: 'install' }
+11 silly lockFile 9a76c4ae-gulpnpm gulpnpm
+12 verbose lock gulpnpm /Users/itainathaniel/.npm/9a76c4ae-gulpnpm.lock
+13 silly lockFile 89fb511f-install install
+14 verbose lock install /Users/itainathaniel/.npm/89fb511f-install.lock
+15 silly lockFile 9a76c4ae-gulpnpm gulpnpm
+16 silly lockFile 9a76c4ae-gulpnpm gulpnpm
+17 silly lockFile 89fb511f-install install
+18 silly lockFile 89fb511f-install install
+19 verbose addNamed [ 'gulpnpm', '' ]
+20 verbose addNamed [ null, '*' ]
+21 silly lockFile 4905c669-gulpnpm gulpnpm@
+22 verbose lock gulpnpm@ /Users/itainathaniel/.npm/4905c669-gulpnpm.lock
+23 verbose addNamed [ 'install', '' ]
+24 verbose addNamed [ null, '*' ]
+25 silly lockFile cadb329f-install install@
+26 verbose lock install@ /Users/itainathaniel/.npm/cadb329f-install.lock
+27 silly addNameRange { name: 'gulpnpm', range: '*', hasData: false }
+28 silly addNameRange { name: 'install', range: '*', hasData: false }
+29 verbose request where is /gulpnpm
+30 verbose request registry https://registry.npmjs.org/
+31 verbose request id 398edfd2d6e54884
+32 verbose url raw /gulpnpm
+33 verbose url resolving [ 'https://registry.npmjs.org/', './gulpnpm' ]
+34 verbose url resolved https://registry.npmjs.org/gulpnpm
+35 verbose request where is https://registry.npmjs.org/gulpnpm
+36 info trying registry request attempt 1 at 21:07:36
+37 http GET https://registry.npmjs.org/gulpnpm
+38 verbose request where is /install
+39 verbose request registry https://registry.npmjs.org/
+40 verbose url raw /install
+41 verbose url resolving [ 'https://registry.npmjs.org/', './install' ]
+42 verbose url resolved https://registry.npmjs.org/install
+43 verbose request where is https://registry.npmjs.org/install
+44 info trying registry request attempt 1 at 21:07:36
+45 verbose etag "113P54VHX3FJP3LDSDBKOLHUM"
+46 http GET https://registry.npmjs.org/install
+47 http 304 https://registry.npmjs.org/install
+48 silly registry.get cb [ 304,
+48 silly registry.get   { date: 'Tue, 09 Jun 2015 18:07:37 GMT',
+48 silly registry.get     via: '1.1 varnish',
+48 silly registry.get     'cache-control': 'max-age=60',
+48 silly registry.get     etag: '"113P54VHX3FJP3LDSDBKOLHUM"',
+48 silly registry.get     age: '3',
+48 silly registry.get     connection: 'keep-alive',
+48 silly registry.get     'x-served-by': 'cache-ams4123-AMS',
+48 silly registry.get     'x-cache': 'HIT',
+48 silly registry.get     'x-cache-hits': '23',
+48 silly registry.get     'x-timer': 'S1433873257.906934,VS0,VE0',
+48 silly registry.get     vary: 'Accept' } ]
+49 verbose etag https://registry.npmjs.org/install from cache
+50 silly addNameRange number 2 { name: 'install', range: '*', hasData: true }
+51 silly addNameRange versions [ 'install',
+51 silly addNameRange   [ '0.1.1',
+51 silly addNameRange     '0.1.2',
+51 silly addNameRange     '0.1.3',
+51 silly addNameRange     '0.1.4',
+51 silly addNameRange     '0.1.5',
+51 silly addNameRange     '0.1.6',
+51 silly addNameRange     '0.1.7',
+51 silly addNameRange     '0.1.8' ] ]
+52 verbose addNamed [ 'install', '0.1.8' ]
+53 verbose addNamed [ '0.1.8', '0.1.8' ]
+54 silly lockFile 584c81dc-install-0-1-8 install@0.1.8
+55 verbose lock install@0.1.8 /Users/itainathaniel/.npm/584c81dc-install-0-1-8.lock
+56 silly lockFile 584c81dc-install-0-1-8 install@0.1.8
+57 silly lockFile 584c81dc-install-0-1-8 install@0.1.8
+58 silly lockFile cadb329f-install install@
+59 silly lockFile cadb329f-install install@
+60 http 404 https://registry.npmjs.org/gulpnpm
+61 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+61 verbose headers   'content-type': 'application/json',
+61 verbose headers   'cache-control': 'max-age=0',
+61 verbose headers   'content-length': '51',
+61 verbose headers   'accept-ranges': 'bytes',
+61 verbose headers   date: 'Tue, 09 Jun 2015 18:07:38 GMT',
+61 verbose headers   via: '1.1 varnish',
+61 verbose headers   age: '0',
+61 verbose headers   connection: 'keep-alive',
+61 verbose headers   'x-served-by': 'cache-ams4136-AMS',
+61 verbose headers   'x-cache': 'MISS',
+61 verbose headers   'x-cache-hits': '0',
+61 verbose headers   'x-timer': 'S1433873257.916864,VS0,VE98' }
+62 silly registry.get cb [ 404,
+62 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+62 silly registry.get     'content-type': 'application/json',
+62 silly registry.get     'cache-control': 'max-age=0',
+62 silly registry.get     'content-length': '51',
+62 silly registry.get     'accept-ranges': 'bytes',
+62 silly registry.get     date: 'Tue, 09 Jun 2015 18:07:38 GMT',
+62 silly registry.get     via: '1.1 varnish',
+62 silly registry.get     age: '0',
+62 silly registry.get     connection: 'keep-alive',
+62 silly registry.get     'x-served-by': 'cache-ams4136-AMS',
+62 silly registry.get     'x-cache': 'MISS',
+62 silly registry.get     'x-cache-hits': '0',
+62 silly registry.get     'x-timer': 'S1433873257.916864,VS0,VE98' } ]
+63 silly lockFile 4905c669-gulpnpm gulpnpm@
+64 silly lockFile 4905c669-gulpnpm gulpnpm@
+65 error 404 404 Not Found: gulpnpm
+65 error 404
+65 error 404 'gulpnpm' is not in the npm registry.
+65 error 404 You should bug the author to publish it
+65 error 404
+65 error 404 Note that you can also install from a
+65 error 404 tarball, folder, or http url, or git url.
+66 error System Darwin 14.3.0
+67 error command "node" "/usr/local/bin/npm" "install" "gulpnpm" "install"
+68 error cwd /Users/itainathaniel/Sites/laravel/knessetrollcall
+69 error node -v v0.10.33
+70 error npm -v 1.4.28
+71 error code E404
+72 verbose exit [ 1, true ]
