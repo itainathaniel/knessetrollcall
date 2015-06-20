@@ -27,11 +27,9 @@ class PartiesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show(Party $party)
 	{
-		$party = Party::find($id);
-
-		$knessetMembers = KnessetMember::wherePartyId($id)->get();
+		$knessetMembers = KnessetMember::wherePartyId($party->id)->get();
 
         $today = $party->presence_today();
         $week = $party->presence_week();

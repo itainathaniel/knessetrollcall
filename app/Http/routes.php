@@ -9,7 +9,7 @@ Route::get('parties', [
     'as' => 'parties_path',
     'uses' => 'PartiesController@index'
 ]);
-Route::get('party/{id}', [
+Route::get('party/{party}', [
     'as' => 'party_path',
     'uses' => 'PartiesController@show'
 ]);
@@ -18,15 +18,15 @@ Route::get('members', [
     'as' => 'members_path',
     'uses' => 'KnessetMembersController@index'
 ]);
-Route::get('member/{id}.json', [
+Route::get('member/{member}.json', [
     'as' => 'member_json_path',
     'uses' => 'KnessetMembersController@showJson'
 ]);
-Route::get('member/{id}', [
+Route::get('member/{member}', [
     'as' => 'member_path',
     'uses' => 'KnessetMembersController@show'
 ]);
-Route::get('member/{id}/log', 'KnessetMembersController@log');
+Route::get('member/{member}/log', 'KnessetMembersController@log');
 
 Route::get('tweets', 'TweetsController@index');
 Route::get('tweet/{id}', [

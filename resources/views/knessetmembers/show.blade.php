@@ -5,6 +5,15 @@
 @stop
 
 @section('content')
+@if ($knessetMember->isInside)
+<div class="row">
+    <div class="alert alert-success text-center">
+        עכשיו במשכן הכנסת, כבר
+        {{ $lastEntranceSign }}
+        שעות
+    </div>
+</div>
+@endif
 <div class="row user-profile">
     <div class="media col-md-4">
         <div class="media-image pull-right">

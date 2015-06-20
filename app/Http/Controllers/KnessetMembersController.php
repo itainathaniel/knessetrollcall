@@ -1,5 +1,6 @@
 <?php namespace KnessetRollCall\Http\Controllers;
 
+use Carbon\Carbon;
 use KnessetRollCall\EntranceLog;
 use KnessetRollCall\Http\Requests;
 use KnessetRollCall\Http\Requests\PageRequest;
@@ -15,7 +16,7 @@ class KnessetMembersController extends Controller {
 	 */
 	public function index()
 	{
-		$members = KnessetMember::all();
+		$members = KnessetMember::active()->get();
 
         return view('knessetmembers.index', compact('members'));
 	}
@@ -27,33 +28,34 @@ class KnessetMembersController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show(KnessetMember $knessetMember)
 	{
-        $knessetMember = KnessetMember::whereId($id)->firstOrFail();
-
         $sameParty = KnessetMember::wherePartyId($knessetMember->party_id)->whereNotIn('id', array($knessetMember->id))->get();
+
+        $lastEntrance = EntranceLog::whereKnessetmembersId($knessetMember->id)->where('isInside', '=', true)->orderBy('id', 'desc')->take(1)->firstOrFail();
+        $lastEntranceSign = HelperController::diffInHoursAndMinutes($lastEntrance->created_at->diffInMinutes());
 
         $today = $knessetMember->presence_today();
         $week = $knessetMember->presence_week();
         $month = $knessetMember->presence_month();
 
-        $now = EntranceLog::whereKnessetmembersId($id)->where('isInside', '=', true)->orderBy('created_at', 'desc')->limit(1)->get();
+        EntranceLog::where('knessetmembers_id', '=', $knessetMember->id)->where('isInside', '=', true)->orderBy('created_at', 'desc')->limit(1)->get();
 
-        return view('knessetmembers.show', compact('knessetMember', 'entranceLogs', 'sameParty', 'today', 'week', 'month'));
+        return view('knessetmembers.show', compact('knessetMember', 'entranceLogs', 'sameParty', 'today', 'week', 'month', 'lastEntranceSign'));
 	}
 
-    public function showJson($id)
+    public function showJson(KnessetMember $knessetMember)
     {
-        $entranceLogs = EntranceLog::whereKnessetmembersId($id)->orderBy('created_at', 'asc')->get();
+        $entranceLogs = EntranceLog::whereKnessetmembersId($knessetMember->id)->orderBy('created_at', 'asc')->get();
 
         return $entranceLogs;
     }
 
-    public function log($id)
+    public function log(KnessetMember $knessetMember)
     {
-        $knessetMember = KnessetMember::whereId($id)->firstOrFail();
+        $knessetMember = KnessetMember::whereId($knessetMember->id)->firstOrFail();
 
-        $entranceLogs = EntranceLog::whereKnessetmembersId($id)->orderBy('created_at', 'asc')->get();
+        $entranceLogs = EntranceLog::whereKnessetmembersId($knessetMember->id)->orderBy('created_at', 'asc')->get();
 
         return view('knessetmembers.log', compact('knessetMember', 'entranceLogs'));
     }
