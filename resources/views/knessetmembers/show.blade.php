@@ -4,8 +4,6 @@
 
 @section('image', $knessetMember->image_big_path())
 
-@section('facebook-tag-profile', '<meta property="og:type" content="ayelet.benshaul.shaked" />');
-
 @section('tweeter-card-description', 'ח״כ '.$knessetMember->name)
 
 @section('content')
