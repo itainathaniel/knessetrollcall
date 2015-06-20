@@ -2,7 +2,9 @@
 
 @section('title', Lang::get('knessetmember.page-title') . $knessetMember->name )
 
-@section('image', $knessetMember->image)
+@section('image', $knessetMember->image_path())
+
+@section('tweeter-card-description', 'ח״כ '.$knessetMember->name)
 
 @section('content')
     @if ($knessetMember->isInside)
