@@ -42,6 +42,10 @@ class KnessetMember extends Model
         return 'http://www.knesset.gov.il'.$this->image;
     }
 
+    public function image_big_path() {
+        return 'http://www.knesset.gov.il'.str_replace('-s.jpg', '.jpg', $this->image);
+    }
+
     public function presence_today()
     {
         return Presence::whereKnessetmemberId($this->id)->where('day', date('Y-m-d'))->sum('work');
