@@ -9,6 +9,7 @@
         <meta name="author" content="Itai Nathaniel">
 
         @include('layouts.partials.twitter-cards')
+        @include('layouts.partials.facebook')
 
         <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="/css/all.css">
