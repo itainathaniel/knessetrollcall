@@ -2,7 +2,7 @@
 
 @section('title', Lang::get('knessetmember.page-title') . $knessetMember->name . ' | ' . Lang::get('index.site.title'))
 
-@section('image', $knessetMember->image_path())
+@section('image', $knessetMember->image_big_path())
 
 @section('tweeter-card-description', 'ח״כ '.$knessetMember->name)
 
