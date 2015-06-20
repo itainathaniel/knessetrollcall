@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', Lang::get('knessetmember.page-title') . $knessetMember->name )
+@section('title', Lang::get('knessetmember.page-title') . $knessetMember->name . ' | ' . Lang::get('index.site.title'))
 
 @section('image', $knessetMember->image_path())
 
