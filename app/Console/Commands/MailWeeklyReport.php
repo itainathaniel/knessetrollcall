@@ -6,21 +6,21 @@ use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
 use KnessetRollCall\KnessetMember;
 
-class MailDailyReport extends Command
+class MailWeeklyReport extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'krc:mail:daily';
+    protected $signature = 'krc:mail:weekly';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Email day report to me.';
+    protected $description = 'Email weekly report to me.';
 
     /**
      * Create a new command instance.
@@ -39,7 +39,7 @@ class MailDailyReport extends Command
      */
     public function handle()
     {
-        $report_title = 'דו״ח יומי';
+        $report_title = 'דו״ח שבועי';
         $members = KnessetMember::active()->get();
 
         Mail::send('emails.weekly', compact('members', 'report_title'), function($message){

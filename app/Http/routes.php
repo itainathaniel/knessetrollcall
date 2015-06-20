@@ -43,6 +43,11 @@ Route::get('outside', [
     'uses' => 'KnessetMembersController@outside'
 ]);
 
+//Route::get('weekly', function(){
+//    $members = \KnessetRollCall\KnessetMember::all();
+//    return view('emails.weekly', compact('members'));
+//});
+
 //Route::get('tweeting-test', function()
 //{
 //    return Twitter::postTweet(array('status' => 'שלום טוויטר! #myfirstTweet #laravel', 'format' => 'json'));

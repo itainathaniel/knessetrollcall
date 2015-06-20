@@ -10,6 +10,7 @@ use KnessetRollCall\Console\Commands\GrabParties;
 use KnessetRollCall\Console\Commands\GrabImage;
 use KnessetRollCall\Console\Commands\EntranceToPresence;
 use KnessetRollCall\Console\Commands\MailDailyReport;
+use KnessetRollCall\Console\Commands\MailWeeklyReport;
 
 class Kernel extends ConsoleKernel
 {
@@ -24,6 +25,7 @@ class Kernel extends ConsoleKernel
         GrabImage::class,
         EntranceToPresence::class,
         MailDailyReport::class,
+        MailWeeklyReport::class,
     ];
 
     /**
@@ -35,5 +37,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('krc:log')->everyFiveMinutes();
+        $schedule->command('krc:presence')->hourly();
+        $schedule->command('krc:mail:daily')->dailyAt('7:00');
+        $schedule->command('krc:mail:weekly')->weekly()->sundays()->at('7:00');
     }
 }

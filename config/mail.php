@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => 'im@it.ai', 'name' => 'Itai KRC Nathaniel'],
 
     /*
     |--------------------------------------------------------------------------

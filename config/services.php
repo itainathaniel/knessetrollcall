@@ -14,25 +14,25 @@ return [
     |
     */
 
-    'mailgun' => [
-        'domain' => '',
-        'secret' => '',
-    ],
+//    'mailgun' => [
+//        'domain' => '',
+//        'secret' => '',
+//    ],
 
     'mandrill' => [
-        'secret' => '',
+        'secret' => env('MAIL_MANDRILL_API_KEY'),
     ],
 
-    'ses' => [
-        'key' => '',
-        'secret' => '',
-        'region' => 'us-east-1',
-    ],
-
-    'stripe' => [
-        'model'  => KnessetRollCall\User::class,
-        'key' => '',
-        'secret' => '',
-    ],
+//    'ses' => [
+//        'key' => '',
+//        'secret' => '',
+//        'region' => 'us-east-1',
+//    ],
+//
+//    'stripe' => [
+//        'model'  => KnessetRollCall\User::class,
+//        'key' => '',
+//        'secret' => '',
+//    ],
 
 ];
