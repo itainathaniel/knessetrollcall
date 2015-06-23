@@ -143,6 +143,7 @@ return [
         KnessetRollCall\Providers\AppServiceProvider::class,
         KnessetRollCall\Providers\EventServiceProvider::class,
         KnessetRollCall\Providers\RouteServiceProvider::class,
+        KnessetRollCall\Providers\CarbonLanguageProvider::class,
 
         Illuminate\Html\HtmlServiceProvider::class,
         Laracasts\Flash\FlashServiceProvider::class,
