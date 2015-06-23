@@ -40,7 +40,7 @@ class MailDailyReport extends Command
     public function handle()
     {
         $report_title = 'דו״ח יומי';
-        $members = KnessetMember::active()->get();
+        $members = KnessetMember::active()->orderBy('party_id', 'desc')->get();
 
         Mail::send('emails.weekly', compact('members', 'report_title'), function($message){
             $message->to('itainathaniel@gmail.com')->subject('Weekly Update!');

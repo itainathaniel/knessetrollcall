@@ -46,6 +46,11 @@ class KnessetMember extends Model
         return 'http://www.knesset.gov.il'.str_replace('-s.jpg', '.jpg', $this->image);
     }
 
+    public function presence_yesterday()
+    {
+        return Presence::whereKnessetmemberId($this->id)->where('day', date('Y-m-d', strtotime('yesterday')))->sum('work');
+    }
+
     public function presence_today()
     {
         return Presence::whereKnessetmemberId($this->id)->where('day', date('Y-m-d'))->sum('work');
