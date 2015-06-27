@@ -3,8 +3,13 @@
 namespace KnessetRollCall\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use KnessetRollCall\KnessetMember;
+use KnessetRollCall\Presence;
+use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
 
 class MailDailyReport extends Command
 {
@@ -39,11 +44,40 @@ class MailDailyReport extends Command
      */
     public function handle()
     {
-        $report_title = 'דו״ח יומי';
-        $members = KnessetMember::active()->orderBy('party_id', 'desc')->get();
+        $dates_title = date('Y-m-d', strtotime('yesterday'));
 
-        Mail::send('emails.weekly', compact('members', 'report_title'), function($message){
-            $message->to('itainathaniel@gmail.com')->subject('Weekly Update!');
+        $present = Presence::select('knessetmember_id', DB::raw('sum(work) as minutes'))->whereIn('knessetmember_id', function($query){
+            $query->from('knessetmembers')->where('active', '=', true)->lists('id');
+        })
+            ->where('day', '=', $dates_title)
+            ->groupBy('knessetmember_id')
+            ->orderBy('minutes', 'desc')
+            ->get();
+
+        $ids = [];
+        foreach ($present as $km) {
+            $ids[] = $km->knessetmember_id;
+        }
+        $absent = KnessetMember::whereNotIn('id', $ids)->where('active', '=', true)->get();
+
+        $html = view('emails.daily', compact('dates_title', 'present', 'absent'))->render();
+        $css = file_get_contents(public_path() . '/css/all.css');
+        $report_path = '/static/emails/daily-' . date('Y-m-d') . '.html';
+
+        $converter = new CssToInlineStyles();
+        $converter->setHTML($html);
+        $converter->setCSS($css);
+        $converter->setUseInlineStylesBlock();
+        $converter->setCleanup();
+        $converter->setStripOriginalStyleTags();
+        $converter->setHTML($html);
+        $content =  $converter->convert();
+
+        // @TODO: maybe I'll delete older reports some day?
+        Storage::disk('local')->put($report_path, $content);
+
+        Mail::send('emails.raw', ['content' => $content], function($message){
+            $message->to('itainathaniel@gmail.com')->subject(Lang::get('emails.daily-report.subject'));
         });
     }
 }
