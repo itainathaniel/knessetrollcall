@@ -45,8 +45,8 @@ class MailWeeklyReport extends Command
     public function handle()
     {
         $dates = [
-            date('Y-m-d', strtotime('last sunday', strtotime('last sunday', time()))),
-            date('Y-m-d', strtotime('last saturday', strtotime('last sunday', time())))
+            date('Y-m-d', strtotime('last sunday', strtotime('last saturday'))),
+            date('Y-m-d', strtotime('last saturday')),
         ];
         $dates_title = $dates[0] . ' - ' . $dates[1];
 
