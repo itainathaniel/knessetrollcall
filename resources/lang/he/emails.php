@@ -9,7 +9,7 @@ return array(
         'daily_minutes' => 'דקות אתמול',
         'daily_hours' => 'שעות אתמול',
         'absent' => 'נעדרו אתמול (:count)',
-        'present' => 'נחכו אתמול (:count)',
+        'present' => 'נכחו אתמול (:count)',
     ],
     'weekly-report' => [
         'subject' => 'עדכון שבועי',
@@ -19,6 +19,6 @@ return array(
         'weekly_minutes' => 'דקות השבוע',
         'weekly_hours' => 'שעות השבוע',
         'absent' => 'נעדרו השבוע (:count)',
-        'present' => 'נחכו השבוע (:count)',
+        'present' => 'נכחו השבוע (:count)',
     ],
 );
