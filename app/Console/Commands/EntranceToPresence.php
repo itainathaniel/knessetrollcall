@@ -40,7 +40,7 @@ class EntranceToPresence extends Command
      */
     public function handle()
     {
-        $entrance_logs = EntranceLog::whereProcessed(false)->where('isInside', '=', false)->limit(10)->get();
+        $entrance_logs = EntranceLog::whereProcessed(false)->where('isInside', '=', false)->limit(20)->get();
 
         if (count($entrance_logs) == 0) {
             $this->comment('No entrance logs');
@@ -58,7 +58,7 @@ class EntranceToPresence extends Command
             } catch (ModelNotFoundException $e) {
                 $presence = new Presence();
                 $presence->knessetmember_id = $log['knessetmembers_id'];
-                $presence->day = $log['created_at']->toDateString();
+                $presence->day = $temp['created_at']->toDateString();
                 $presence->work = $temp['created_at']->diffInMinutes($log['created_at']);
                 $this->comment('NEW work: ' . $presence->work);
             }
