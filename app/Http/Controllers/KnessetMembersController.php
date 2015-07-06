@@ -39,7 +39,7 @@ class KnessetMembersController extends Controller {
         }
 
         $today = $knessetMember->presence_today();
-        $week = $knessetMember->presence_week();
+        $week = minutesToHours($knessetMember->presence_week());
         $month = $knessetMember->presence_month();
 
         EntranceLog::where('knessetmembers_id', '=', $knessetMember->id)->where('isInside', '=', true)->orderBy('created_at', 'desc')->limit(1)->get();
