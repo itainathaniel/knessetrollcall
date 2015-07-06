@@ -39,7 +39,7 @@
                     <td>{{ $km->knessetmember->name }}</td>
                     <td>{{ $km->knessetmember->party->name }}</td>
                     <td>{{ $km->minutes }}</td>
-                    <td>{{ $km->minutesToHours() }}</td>
+                    <td>{{ minutesToHours($km->minutes) }}</td>
                 </tr>
             @endforeach
         </tbody>

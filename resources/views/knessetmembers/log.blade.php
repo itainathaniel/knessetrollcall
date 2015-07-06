@@ -11,7 +11,7 @@
             <img src="http://www.knesset.gov.il/{{ $knessetMember->image_big() }}">
         </div>
         <h1 class="media-heading">{{ $knessetMember->name }}</h1>
-        <h3>{{{ link_to_route('party_path', $knessetMember->party->name, ['id' => $knessetMember->party->id]) }}}</h3>
+        <h3>{!! link_to_route('party_path', $knessetMember->party->name, ['id' => $knessetMember->party->id]) !!}</h3>
     </div>
     <div class="col-md-6">
         <ul>
