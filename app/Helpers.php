@@ -5,7 +5,7 @@ function minutesToHours($minutes)
     $hour = floor($minutes/60);
     $minute = $minutes - ($hour * 60);
 
-    return $this->addLeadingZero($hour) . ':' . $this->addLeadingZero($minute);
+    return addLeadingZero($hour) . ':' . addLeadingZero($minute);
 }
 
 function addLeadingZero($num)
