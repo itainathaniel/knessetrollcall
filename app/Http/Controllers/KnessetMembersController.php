@@ -58,7 +58,7 @@ class KnessetMembersController extends Controller {
     {
         $knessetMember = KnessetMember::whereId($knessetMember->id)->firstOrFail();
 
-        $entranceLogs = EntranceLog::whereKnessetmembersId($knessetMember->id)->orderBy('created_at', 'asc')->get();
+        $entranceLogs = EntranceLog::whereKnessetmembersId($knessetMember->id)->latest()->get();
 
         return view('knessetmembers.log', compact('knessetMember', 'entranceLogs'));
     }
