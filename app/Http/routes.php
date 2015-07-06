@@ -14,10 +14,6 @@ Route::get('party/{party}', [
     'uses' => 'PartiesController@show'
 ]);
 
-Route::get('members', [
-    'as' => 'members_path',
-    'uses' => 'KnessetMembersController@index'
-]);
 Route::get('member/{member}.json', [
     'as' => 'member_json_path',
     'uses' => 'KnessetMembersController@showJson'

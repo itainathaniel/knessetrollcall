@@ -1,13 +1,16 @@
 @foreach ($members as $member)
-    <li class="media pull-right {{ isset($perRow) ? 'user-sniplet'.$perRow : '' }}">
-        <a class="media-image pull-right" href="{{ route('member_path', ['id' => $member->id]) }}">
-            <img src="{{ $member->image_path() }}" alt="{{ $member->name }}">
+    <div class="col-xs-6 col-sm-2 text-center km">
+        @if ($member->isInside && isset($showRibbon) && $showRibbon)
+            <div class="corner-ribbon">
+                <span>{{ Lang::get('knessetmember.ribbon_inside') }}</span>
+            </div>
+        @endif
+        <a href="{{ route('member_path', ['id' => $member->id]) }}">
+            <img src="{{ $member->image_path() }}" alt="{{ $member->name }}" title="{{ $member->name }}" class="img-thumbnail">
+            <h4>{{ $member->name }}</h4>
+            @if (isset($showTimes))
+                <span class="text-muted">{{ $member->updated_at->diffForHumans() }}</span>
+            @endif
         </a>
-        <div class="media-body">
-            <h4 class="media-heading">
-                {!! link_to_route('member_path', $member->name, ['id' => $member->id]) !!}
-            </h4>
-            {{ isset($showTimes) ? $member->updated_at->diffForHumans() : '' }}
-        </div>
-    </li>
+    </div>
 @endforeach

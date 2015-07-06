@@ -37,13 +37,13 @@
             <p>
                 {!! link_to('http://it.ai', Lang::get('site.footer.link-itai'), ['onclick' => "trackOutboundLink('http://it.ai'); return false;"]) !!} |
                 {!! link_to_action('PagesController@about', Lang::get('site.footer.link-about')) !!} |
-                {!! link_to_action('PagesController@contact', Lang::get('site.footer.link-contact'))  !!}
+                {!! link_to_action('PagesController@contact', Lang::get('site.footer.link-contact'))  !!} |
+                <a href="https://www.facebook.com/knessetrollcall" style="color:rgb(58,87,149);">{{ Lang::get('site.footer.link-facebook') }}</a>
             </p>
         </footer>
 
     </div> <!-- /container -->
 
-    <script src="/js/jquery.min.js" old-src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     @include('layouts.partials.googleAnalytics')
 </body>
 </html>

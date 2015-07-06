@@ -1,6 +1,6 @@
 @extends('layouts.default')
 
-@section('title', Lang::get('knessetmember.page-title') . $knessetMember->name . ' | ' . Lang::get('index.site.title'))
+@section('title', Lang::get('knessetmember.page-title') . $knessetMember->name))
 
 @section('image', $knessetMember->image_big_path())
 
@@ -10,9 +10,7 @@
     @if ($knessetMember->isInside)
     <div class="row">
         <div class="alert alert-success text-center">
-            עכשיו במשכן הכנסת, כבר
-            {{ $lastEntranceSign }}
-            שעות
+            {{ Lang::get('knessetmember.now_inside', ['hours' => minutesToHours($lastEntranceSign)]) }}
         </div>
     </div>
     @endif
@@ -26,19 +24,19 @@
         </div>
         <div class="col-md-2 col-md-offset-2">
             <div class="presence presence-today">
-                <p class="number">{{ Lang::get('knessetmember.show.x_hours', ['hours' => $today] ) }}</p>
+                <p class="number">{{ Lang::get('knessetmember.show.x_hours', ['hours' => minutesToHours($today)] ) }}</p>
                 <p class="text">{{ Lang::get('knessetmember.show.today') }}</p>
             </div>
         </div>
         <div class="col-md-2">
             <div class="presence presence-today">
-                <p class="number">{{ Lang::get('knessetmember.show.x_hours', ['hours' => $week] ) }}</p>
+                <p class="number">{{ Lang::get('knessetmember.show.x_hours', ['hours' => minutesToHours($week)] ) }}</p>
                 <p class="text">{{ Lang::get('knessetmember.show.week') }}</p>
             </div>
         </div>
         <div class="col-md-2">
             <div class="presence presence-today">
-                <p class="number">{{ Lang::get('knessetmember.show.x_hours', ['hours' => $month] ) }}</p>
+                <p class="number">{{ Lang::get('knessetmember.show.x_hours', ['hours' => minutesToHours($month)] ) }}</p>
                 <p class="text">{{ Lang::get('knessetmember.show.month') }}</p>
             </div>
         </div>
@@ -49,9 +47,9 @@
                 'members' => count($sameParty),
                 'party' => link_to_route('party_path', $knessetMember->party->name, ['id' => $knessetMember->party->id])
             ] ) !!}</h3>
-            <ul class="media-list users-sniplet">
-                @include('layouts.partials.membersList', ['members' => $sameParty, 'perRow' => 5])
-            </ul>
+            <div class="users-sniplet">
+                @include('layouts.partials.membersList', ['members' => $sameParty, 'showRibbon' => true])
+            </div>
         </div>
     </div>
 @stop

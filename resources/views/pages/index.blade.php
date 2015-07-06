@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="row isInside">
-        <h2>{{ Lang::get('index.nowInside', ['count' => count($membersInside) ]) }}</h2>
+        <h1>{{ Lang::get('index.nowInside', ['count' => count($membersInside) ]) }}</h1>
         @foreach ($membersInside as $member)
             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 media">
                 <a class="media-center" href="{{ route('member_path', ['id' => $member->id]) }}">
@@ -22,7 +22,7 @@
             <h3>נכנסו לאחרונה</h3>
             @if (count($membersLatestIn))
                 <ul class="media-list users-sniplet">
-                    @include('layouts.partials.membersList', ['members' => $membersLatestIn, 'showTimes' => true, 'perRow' => 3])
+                    @include('layouts.partials.membersList', ['members' => $membersLatestIn, 'showTimes' => true])
                 </ul>
             @else
                 <div class="alert alert-warning" role="alert">לא נמצאו ח״כים שנכנסו לאחרונה</div>
@@ -32,7 +32,7 @@
     	    <h3>יצאו לאחרונה</h3>
     	    @if (count($membersLatestOut))
                 <ul class="media-list users-sniplet">
-                    @include('layouts.partials.membersList', ['members' => $membersLatestOut, 'showTimes' => true, 'perRow' => 3])
+                    @include('layouts.partials.membersList', ['members' => $membersLatestOut, 'showTimes' => true])
                 </ul>
             @else
                 <div class="alert alert-warning" role="alert">לא נמצאו ח״כים שיצאו לאחרונה</div>

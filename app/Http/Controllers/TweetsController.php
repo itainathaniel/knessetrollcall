@@ -3,6 +3,8 @@
 use KnessetRollCall\Http\Requests;
 use KnessetRollCall\Http\Requests\PageRequest;
 use KnessetRollCall\Http\Controllers\Controller;
+use KnessetRollCall\KnessetMember;
+use KnessetRollCall\Tweet;
 
 class TweetsController extends Controller {
 

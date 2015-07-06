@@ -10,6 +10,7 @@ return array(
     'footer' => [
         'link-about' => 'אודות',
         'link-contact' => 'יצירת קשר',
-        'link-itai' => 'איתי נתנאל'
+        'link-itai' => 'איתי נתנאל',
+        'link-facebook' => 'פייסבוק',
     ]
 );

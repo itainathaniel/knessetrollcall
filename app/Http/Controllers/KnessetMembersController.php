@@ -9,19 +9,6 @@ use KnessetRollCall\KnessetMember;
 
 class KnessetMembersController extends Controller {
 
-    /**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		$members = KnessetMember::active()->get();
-
-        return view('knessetmembers.index', compact('members'));
-	}
-
-
 	/**
 	 * Display the specified resource.
 	 *
@@ -30,17 +17,17 @@ class KnessetMembersController extends Controller {
 	 */
 	public function show(KnessetMember $knessetMember)
 	{
-        $sameParty = KnessetMember::wherePartyId($knessetMember->party_id)->whereNotIn('id', array($knessetMember->id))->get();
+        $sameParty = KnessetMember::wherePartyId($knessetMember->party_id)->whereNotIn('id', array($knessetMember->id))->orderByInside()->get();
 
-        $lastEntranceSign = '';
+        $lastEntranceSign = 0;
         $lastEntrance = EntranceLog::whereKnessetmembersId($knessetMember->id)->where('isInside', '=', true)->orderBy('id', 'desc')->take(1)->first();
         if ($lastEntrance) {
-            $lastEntranceSign = HelperController::diffInHoursAndMinutes($lastEntrance->created_at->diffInMinutes());
+            $lastEntranceSign = $lastEntrance->created_at->diffInMinutes();
         }
 
-        $today = minutesToHours($knessetMember->presence_today());
-        $week = minutesToHours($knessetMember->presence_week());
-        $month = minutesToHours($knessetMember->presence_month());
+        $today = $knessetMember->presence_today() + $lastEntranceSign;
+        $week = $knessetMember->presence_week() + $lastEntranceSign;
+        $month = $knessetMember->presence_month() + $lastEntranceSign;
 
         EntranceLog::where('knessetmembers_id', '=', $knessetMember->id)->where('isInside', '=', true)->orderBy('created_at', 'desc')->limit(1)->get();
 

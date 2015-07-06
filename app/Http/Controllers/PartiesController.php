@@ -15,9 +15,9 @@ class PartiesController extends Controller {
 	 */
 	public function index()
 	{
-        $parties = Party::orderBy('name', 'asc')->get();
+        $members = KnessetMember::active()->orderBy('party_id', 'asc')->orderByInside()->get();
 
-        return view('parties.index', compact('parties'));
+        return view('parties.index', compact('members'));
 	}
 
 
@@ -29,7 +29,7 @@ class PartiesController extends Controller {
 	 */
 	public function show(Party $party)
 	{
-		$knessetMembers = KnessetMember::wherePartyId($party->id)->get();
+		$knessetMembers = KnessetMember::wherePartyId($party->id)->orderByInside()->get();
 
         $today = $party->presence_today();
         $week = $party->presence_week();

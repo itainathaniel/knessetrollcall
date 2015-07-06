@@ -1,28 +1,31 @@
 @extends('layouts.default')
 
-@section('title')
-    | {{ Lang::get('parties.title') }}
-@stop
+@section('title', '| ' . Lang::get('parties.title'))
 
-@section('nav-active-parties')
-    class="active"
-@stop
+@section('nav-active-parties', 'class="active"')
 
 @section('content')
-<div class="row">
-    <div class="col-md-3 user-block">
-        <h1>כל המפלגות</h1>
+    <div class="row">
 
-        <ul class="list-group">
-            @foreach($parties as $party)
-                @if(count($party->knessetmembers) > 0)
-                    <li class="list-group-item">
-                        <span class="badge">{{ count($party->knessetmembers) }}</span>
-                        {!! link_to_route('party_path', $party->name, ['id' => $party->id]) !!}
-                    </li>
+            <?php $party = ''; ?>
+            @foreach ($members as $key => $member)
+                @if ($party != $member->party->name)
+                    @if ($party != '')
+                        </div>
+                        </div>
+                    @endif
+                    <div class="col-md-12 clearfix">
+                        <div class="page-header">
+                            <h2>{!! link_to_route('party_path', $member->party->name, ['id' => $member->party->id]) !!}</h2>
+                        </div>
+                        <div class="users-sniplet">
+                    <?php $party = $member->party->name; ?>
                 @endif
+
+                @include('layouts.partials.listMember', ['member' => $member, 'showRibbon' => true])
             @endforeach
-        </ul>
+
+            </div>
+        </div>
     </div>
-</div>
 @stop
