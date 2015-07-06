@@ -38,9 +38,9 @@ class KnessetMembersController extends Controller {
             $lastEntranceSign = HelperController::diffInHoursAndMinutes($lastEntrance->created_at->diffInMinutes());
         }
 
-        $today = $knessetMember->presence_today();
+        $today = minutesToHours($knessetMember->presence_today());
         $week = minutesToHours($knessetMember->presence_week());
-        $month = $knessetMember->presence_month();
+        $month = minutesToHours($knessetMember->presence_month());
 
         EntranceLog::where('knessetmembers_id', '=', $knessetMember->id)->where('isInside', '=', true)->orderBy('created_at', 'desc')->limit(1)->get();
 

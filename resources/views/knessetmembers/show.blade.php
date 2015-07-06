@@ -26,19 +26,19 @@
         </div>
         <div class="col-md-2 col-md-offset-2">
             <div class="presence presence-today">
-                <p class="number">{{ Lang::get('knessetmember.show.x_hours', ['hours' => round($today/60, 2)] ) }}</p>
+                <p class="number">{{ Lang::get('knessetmember.show.x_hours', ['hours' => $today] ) }}</p>
                 <p class="text">{{ Lang::get('knessetmember.show.today') }}</p>
             </div>
         </div>
         <div class="col-md-2">
             <div class="presence presence-today">
-                <p class="number">{{ Lang::get('knessetmember.show.x_hours', ['hours' => round($week/60, 2)] ) }}</p>
+                <p class="number">{{ Lang::get('knessetmember.show.x_hours', ['hours' => $week] ) }}</p>
                 <p class="text">{{ Lang::get('knessetmember.show.week') }}</p>
             </div>
         </div>
         <div class="col-md-2">
             <div class="presence presence-today">
-                <p class="number">{{ Lang::get('knessetmember.show.x_hours', ['hours' => round($month/60, 2)] ) }}</p>
+                <p class="number">{{ Lang::get('knessetmember.show.x_hours', ['hours' => $month] ) }}</p>
                 <p class="text">{{ Lang::get('knessetmember.show.month') }}</p>
             </div>
         </div>
