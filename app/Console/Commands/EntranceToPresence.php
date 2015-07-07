@@ -52,7 +52,7 @@ class EntranceToPresence extends Command
             $temp = EntranceLog::whereKnessetmembersId($log['knessetmembers_id'])->where('isInside', '=', true)->where('id', '<', $log['id'])->orderBy('id', 'desc')->firstOrFail();
 
             try {
-                $presence = Presence::whereKnessetmemberId($log['knessetmembers_id'])->where('day', $log['created_at']->toDateString())->firstOrFail();
+                $presence = Presence::whereKnessetmemberId($log['knessetmembers_id'])->where('day', $temp['created_at']->toDateString())->firstOrFail();
                 $presence->work+= $temp['created_at']->diffInMinutes($log['created_at']);
                 $this->comment('OLD work: ' . $presence->work);
             } catch (ModelNotFoundException $e) {
