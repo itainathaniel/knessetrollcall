@@ -20,7 +20,7 @@ class KnessetMembersController extends Controller {
         $sameParty = KnessetMember::wherePartyId($knessetMember->party_id)->whereNotIn('id', array($knessetMember->id))->orderByInside()->get();
 
         $lastEntranceSign = 0;
-        $lastEntrance = EntranceLog::whereKnessetmembersId($knessetMember->id)->where('isInside', '=', true)->orderBy('id', 'desc')->take(1)->first();
+        $lastEntrance = EntranceLog::whereKnessetmembersId($knessetMember->id)->where('isInside', '=', true)->where('processed', '=', false)->orderBy('id', 'desc')->take(1)->first();
         if ($lastEntrance) {
             $lastEntranceSign = $lastEntrance->created_at->diffInMinutes();
         }
