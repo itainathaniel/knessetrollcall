@@ -55,12 +55,21 @@ class MailDailyReport extends Command
             ->get();
 
         $ids = [];
+        $minutes = 0;
+        $parties = [];
         foreach ($present as $km) {
             $ids[] = $km->knessetmember_id;
+            $minutes += $km->minutes;
+
+            if (!isset($parties[$km->knessetmember->party->id])) {
+                $parties[$km->knessetmember->party->id] = ['name' => $km->knessetmember->party->name, 'members' => 0, 'minutes' => 0];
+            }
+            $parties[$km->knessetmember->party->id]['members']++;
+            $parties[$km->knessetmember->party->id]['minutes'] += $km->minutes;
         }
         $absent = KnessetMember::whereNotIn('id', $ids)->where('active', '=', true)->get();
 
-        $html = view('emails.daily', compact('dates_title', 'present', 'absent'))->render();
+        $html = view('emails.daily', compact('dates_title', 'present', 'absent', 'minutes', 'parties'))->render();
         $css = file_get_contents(public_path() . '/css/all.css');
         $report_path = '/static/emails/daily-' . date('Y-m-d') . '.html';
 
