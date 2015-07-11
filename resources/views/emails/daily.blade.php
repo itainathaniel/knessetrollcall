@@ -17,11 +17,11 @@
             </tr>
             <tr>
                 <td>ממוצע דקות לח״כ</td>
-                <td>{{ round($minutes/count($present)) }}</td>
+                <td>{{ $minutesPerKM }}</td>
             </tr>
             <tr>
                 <td>ממוצע שעות לח״כ</td>
-                <td>{{ minutesToHours(round($minutes/count($present))) }}</td>
+                <td>{{ minutesToHours($minutesPerKM) }}</td>
             </tr>
         </tbody>
     </table>

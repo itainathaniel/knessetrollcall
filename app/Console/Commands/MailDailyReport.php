@@ -69,7 +69,9 @@ class MailDailyReport extends Command
         }
         $absent = KnessetMember::whereNotIn('id', $ids)->where('active', '=', true)->get();
 
-        $html = view('emails.daily', compact('dates_title', 'present', 'absent', 'minutes', 'parties'))->render();
+        $minutesPerKM = count($present) == 0 ? round($minutes/count($present)) : 0;
+
+        $html = view('emails.daily', compact('dates_title', 'present', 'absent', 'minutes', 'parties', 'minutesPerKM'))->render();
         $css = file_get_contents(public_path() . '/css/all.css');
         $report_path = '/static/emails/daily-' . date('Y-m-d') . '.html';
 
