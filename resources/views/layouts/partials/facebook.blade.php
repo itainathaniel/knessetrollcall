@@ -1,3 +1,4 @@
+<meta property="fb:admins"      content="654475630" />
 <meta property="og:site_name"   content="{{ Lang::get('index.site.title') }}" />
 <meta property="og:type"        content="profile" />
 <meta property="og:url"         content="{{ Request::url() }}" />
