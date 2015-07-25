@@ -2,7 +2,7 @@
 
 return array(
     'daily-report' => [
-        'subject' => 'עדכון יומי',
+        'subject' => 'כנסת רול קול: עדכון יומי',
         'title' => 'דו״ח נוכחות יומי לתאריך :date',
         'name' => 'שם הח״כ',
         'party' => 'מפלגה',
@@ -12,7 +12,7 @@ return array(
         'present' => 'נכחו אתמול (:count)',
     ],
     'weekly-report' => [
-        'subject' => 'עדכון שבועי',
+        'subject' => 'כנסת רול קול: עדכון שבועי',
         'title' => 'דו״ח נוכחות שבועי לתאריך :date',
         'name' => 'שם הח״כ',
         'party' => 'מפלגה',
@@ -20,5 +20,15 @@ return array(
         'weekly_hours' => 'שעות השבוע',
         'absent' => 'נעדרו השבוע (:count)',
         'present' => 'נכחו השבוע (:count)',
+    ],
+    'monthly-report' => [
+        'subject' => 'כנסת רול קול: עדכון חודשי',
+        'title' => 'דו״ח נוכחות חודשי לתאריך :date',
+        'name' => 'שם הח״כ',
+        'party' => 'מפלגה',
+        'weekly_minutes' => 'דקות החודש',
+        'weekly_hours' => 'שעות החודש',
+        'absent' => 'נעדרו החודש (:count)',
+        'present' => 'נכחו החודש (:count)',
     ],
 );
