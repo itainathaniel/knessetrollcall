@@ -39,19 +39,15 @@ Route::get('outside', [
     'uses' => 'KnessetMembersController@outside'
 ]);
 
-//Route::get('weekly', function(){
-//    $members = \KnessetRollCall\KnessetMember::all();
-//    return view('emails.weekly', compact('members'));
-//});
+// Authentication routes...
+Route::get('login', 'Auth\AuthController@getLogin');
+Route::post('login', 'Auth\AuthController@postLogin');
+Route::get('logout', 'Auth\AuthController@getLogout');
 
-//Route::get('tweeting-test', function()
-//{
-//    return Twitter::postTweet(array('status' => 'שלום טוויטר! #myfirstTweet #laravel', 'format' => 'json'));
-//});
+// Registration routes...
+Route::get('register', 'Auth\AuthController@getRegister');
+Route::post('register', 'Auth\AuthController@postRegister');
 
-//Route::get('cron-test', function()
-//{
-//    return 'testing';
-//});
-
-//Route::get('test', function () {});
+Route::get('home', function(){
+    return 'yay ^-^';
+});

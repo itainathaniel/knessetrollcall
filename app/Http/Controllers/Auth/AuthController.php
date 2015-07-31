@@ -2,6 +2,7 @@
 
 namespace KnessetRollCall\Http\Controllers\Auth;
 
+use Illuminate\Foundation\Auth\ThrottlesLogins;
 use KnessetRollCall\User;
 use Validator;
 use KnessetRollCall\Http\Controllers\Controller;
@@ -20,7 +21,11 @@ class AuthController extends Controller
     |
     */
 
-    use AuthenticatesAndRegistersUsers;
+    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
+
+    protected $redirectPath = '/home';
+
+    protected $loginPath = '/login';
 
     /**
      * Create a new authentication controller instance.
