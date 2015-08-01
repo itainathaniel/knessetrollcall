@@ -7,20 +7,23 @@
 
             @include('layouts.partials.errors')
 
-            <form method="POST" action="/login">
+            <form method="POST" action="/password/reset">
                 {!! csrf_field() !!}
+                <input type="hidden" name="token" value="{{ $token }}">
                 <div class="form-group">
                     <label for="email">דואר אלקטרוני:</label>
                     <input type="email" name="email" class="form-control" value="{{ old('email') }}">
                 </div>
                 <div class="form-group">
-                    <label for="password">ססמה:</label>
-                    <input type="password" name="password" class="form-control" value="{{ old('password') }}">
+                    <label for="password">ססמה חדשה:</label>
+                    <input type="password" name="password" class="form-control">
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-default">התחברות</button>
-                    <span class="help-block pull-left"><a href="{{ url('/password/email') }}">שכחתם ססמה?</a></span>
-                    <span class="help-block">עוד לא רשומים לאתר? <a href="{{ url('/register') }}">לחצו כאן</a> כדי להרשם</span>
+                    <label for="password_confirmation">ססמה חדשה, שוב:</label>
+                    <input type="password" name="password_confirmation" class="form-control">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default">איפוס ססמה</button>
                 </div>
             </form>
         </div>
