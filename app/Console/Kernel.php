@@ -12,6 +12,7 @@ use KnessetRollCall\Console\Commands\EntranceToPresence;
 use KnessetRollCall\Console\Commands\MailDailyReport;
 use KnessetRollCall\Console\Commands\MailMonthlyReport;
 use KnessetRollCall\Console\Commands\MailWeeklyReport;
+use KnessetRollCall\Console\Commands\MailCustomReport;
 
 class Kernel extends ConsoleKernel
 {
@@ -28,6 +29,7 @@ class Kernel extends ConsoleKernel
         MailDailyReport::class,
         MailWeeklyReport::class,
         MailMonthlyReport::class,
+        MailCustomReport::class,
     ];
 
     /**
