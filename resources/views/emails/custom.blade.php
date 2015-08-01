@@ -79,8 +79,8 @@
             <tr>
                 <th>{{ Lang::get('emails.custom-report.name') }}</th>
                 <th>{{ Lang::get('emails.custom-report.party') }}</th>
-                <th>{{ Lang::get('emails.custom-report.monthly_minutes') }}</th>
-                <th>{{ Lang::get('emails.custom-report.monthly_hours') }}</th>
+                <th>{{ Lang::get('emails.custom-report.custom_minutes') }}</th>
+                <th>{{ Lang::get('emails.custom-report.custom_hours') }}</th>
             </tr>
         </thead>
         <tbody>
