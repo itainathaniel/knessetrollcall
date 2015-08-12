@@ -4,8 +4,9 @@ namespace KnessetRollCall\Http\Middleware;
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Support\Facades\Auth;
 
-class RedirectIfAuthenticated
+class UserisAdmin
 {
     /**
      * The Guard implementation.
@@ -34,7 +35,7 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next)
     {
-        if ($this->auth->check()) {
+        if ($this->auth->check() && $this->auth->user()->admin == false) {
             return redirect('/');
         }
 

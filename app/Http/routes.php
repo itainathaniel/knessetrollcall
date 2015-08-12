@@ -56,6 +56,11 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 
+Route::get('profile', 'UsersController@show');
+Route::get('profile/edit', 'UsersController@edit');
+Route::post('profile/edit', 'UsersController@update');
+Route::get('profile/{user}', 'UsersController@show');
+
 Route::get('home', ['middleware' => 'auth', function(){
     return 'yay ^-^';
 }]);
