@@ -29,6 +29,9 @@ class RouteServiceProvider extends ServiceProvider
         $router->model('member', 'KnessetRollCall\KnessetMember');
         $router->model('party', 'KnessetRollCall\Party');
         $router->model('user', 'KnessetRollCall\User');
+        $router->model('knessetmembers', 'KnessetRollCall\KnessetMember');
+        $router->model('parties', 'KnessetRollCall\Party');
+        $router->model('users', 'KnessetRollCall\User');
     }
 
     /**

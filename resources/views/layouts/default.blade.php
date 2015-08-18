@@ -23,6 +23,9 @@
                 <ul class="nav nav-pills pull-left">
                     @if (Auth::check())
                         <li role="presentation" @yield('nav-active-profile', '')>{!! link_to_action('UsersController@edit', Auth::user()->name) !!}</li>
+                        @if (Auth::user()->admin)
+                            <li role="presentation" @yield('nav-active-admin', '')>{!! link_to_action('Admin\AdminController@index', 'אדמין') !!}</li>
+                        @endif
                     @endif
                     <li role="presentation" @yield('nav-active-index', '')>{!! link_to_action('PagesController@index', Lang::get('site.nav.main')) !!}</li>
                     <li role="presentation" @yield('nav-active-parties', '')>{!! link_to_action('PartiesController@index', Lang::get('site.nav.parties')) !!}</li>

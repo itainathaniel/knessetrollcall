@@ -16,12 +16,18 @@ elixir.config.sourcemaps = false;
 elixir(function(mix) {
 
     mix.sass('app.scss', 'resources/css');
+    mix.sass('admin.scss', 'resources/css/admin.css');
 
     mix.styles([
         'vendor/bootstrap.min.css',
         'vendor/bootstrap-rtl.min.css',
         'app.css'
     ], 'public/css/all.css', 'resources/css');
+    mix.styles([
+        'vendor/bootstrap.min.css',
+        'vendor/bootstrap-rtl.min.css',
+        'admin.css'
+    ], 'public/css/admin.css', 'resources/css');
 
     //mix.scripts([
     //    'vendor/jQuery.min.js',

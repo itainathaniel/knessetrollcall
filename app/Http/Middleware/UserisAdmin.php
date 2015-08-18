@@ -35,7 +35,7 @@ class UserisAdmin
      */
     public function handle($request, Closure $next)
     {
-        if ($this->auth->check() && $this->auth->user()->admin == false) {
+        if ($this->auth->guest() || !$this->auth->user()->isAdmin()) {
             return redirect('/');
         }
 

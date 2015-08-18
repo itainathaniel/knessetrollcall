@@ -12,6 +12,11 @@ class Party extends Model
 
     public function knessetMembers()
     {
+        return $this->hasMany('KnessetRollCall\KnessetMember')->active();
+    }
+
+    public function allknessetMembers()
+    {
         return $this->hasMany('KnessetRollCall\KnessetMember');
     }
 

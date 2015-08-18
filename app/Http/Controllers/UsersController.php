@@ -20,9 +20,11 @@ class UsersController extends Controller
 //        $this->middleware('admin', ['only' => 'show']);
     }
 
-    public function show($user)
+    public function show(User $user)
     {
-//        $user = User::find(Auth::user()->id)->firstOrFail();
+        if ($user->id == null) {
+            $user = User::find(Auth::user()->id)->firstOrFail();
+        }
 
         return view('users.show', compact('user'));
     }

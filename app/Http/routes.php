@@ -61,6 +61,16 @@ Route::get('profile/edit', 'UsersController@edit');
 Route::post('profile/edit', 'UsersController@update');
 Route::get('profile/{user}', 'UsersController@show');
 
-Route::get('home', ['middleware' => 'auth', function(){
-    return 'yay ^-^';
-}]);
+Route::group(['namespace' => 'Admin', 'middleware' => 'admin', 'prefix' => 'admin'], function()
+{
+    Route::get('dashboard', 'AdminController@index');
+    Route::resource('users', 'UsersController');
+    Route::resource('knessetmembers', 'KnessetMembersController');
+    Route::resource('parties', 'PartiesController');
+
+
+//    Route::group(['namespace' => 'User'], function()
+//    {
+//        // Controllers Within The "App\Http\Controllers\Admin\User" Namespace
+//    });
+});
