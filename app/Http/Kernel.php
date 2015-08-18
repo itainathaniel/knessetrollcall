@@ -18,7 +18,6 @@ class Kernel extends HttpKernel
         \Illuminate\Session\Middleware\StartSession::class,
         \Illuminate\View\Middleware\ShareErrorsFromSession::class,
         \KnessetRollCall\Http\Middleware\VerifyCsrfToken::class,
-        \KnessetRollCall\Http\Middleware\UserisAdmin::class,
     ];
 
     /**

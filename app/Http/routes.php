@@ -67,10 +67,4 @@ Route::group(['namespace' => 'Admin', 'middleware' => 'admin', 'prefix' => 'admi
     Route::resource('users', 'UsersController');
     Route::resource('knessetmembers', 'KnessetMembersController');
     Route::resource('parties', 'PartiesController');
-
-
-//    Route::group(['namespace' => 'User'], function()
-//    {
-//        // Controllers Within The "App\Http\Controllers\Admin\User" Namespace
-//    });
 });
