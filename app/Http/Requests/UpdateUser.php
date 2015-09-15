@@ -2,9 +2,10 @@
 
 namespace KnessetRollCall\Http\Requests;
 
+use Illuminate\Support\Facades\Auth;
 use KnessetRollCall\Http\Requests\Request;
 
-class UpdateParty extends Request
+class UpdateUser extends Request
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +14,7 @@ class UpdateParty extends Request
      */
     public function authorize()
     {
-        return false;
+        return Auth::check();
     }
 
     /**
@@ -24,7 +25,10 @@ class UpdateParty extends Request
     public function rules()
     {
         return [
-            'name' => 'required|unique:parties'
+            'name' => 'required',
+            'email' => 'required|email|unique:users,id,' . Auth::user()->id,
+            'password' => 'required_with:password_confirmation',
+            'password_confirmation' => 'required_with:password|same:password',
         ];
     }
 }

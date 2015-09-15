@@ -1,17 +1,18 @@
 @extends('admin.layout')
 
 @section('content')
-    <h1 class="page-header">Users</h1>
+    <h1 class="page-header">מפלגות</h1>
 
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Name</th>
-                    <th>Knesset Members (Active)</th>
-                    <th>Knesset Members (All)</th>
-                    <th>Add date</th>
+                    <th>שם</th>
+                    <th>חברי כנסת פעילים</th>
+                    <th>כל חברי הכנסת</th>
+                    <th>תאריך הוספה</th>
+                    <th>תאריך עדכון אחרון</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,8 +25,11 @@
                         <a href="{{ action('Admin\PartiesController@edit', $party) }}">{{ $party->name }}</a>
                     </td>
                     <td>{{ count($party->allknessetmembers) }}</td>
-                    <td>{{ count($party->knessetMembers) }}</td>
+                    <td>
+                        <a href="{{ action('Admin\KnessetMembersController@index') }}?party_id={{ $party->id }}">{{ count($party->knessetMembers) }}</a>
+                    </td>
                     <td>{{ $party->created_at->format('d/m/Y H:i') }}</td>
+                    <td>{{ $party->updated_at->format('d/m/Y H:i') }}</td>
                 </tr>
             @endforeach
             </tbody>

@@ -17,11 +17,11 @@
                     <input type="text" name="name" id="name" class="form-control" value="{{ $party->name }}">
                 </div>
                 <div class="form-group">
-                    <label for="name">הצטרפות</label>
+                    <label for="name">תאריך הוספה</label>
                     <pre>{{ $party->created_at->format('d/m/Y H:i:s') }}</pre>
                 </div>
                 <div class="form-group">
-                    <label for="name">עדכון</label>
+                    <label for="name">תאריך עדכון אחרון</label>
                     <pre>{{ $party->updated_at->format('d/m/Y H:i:s') }}</pre>
                 </div>
                 <div class="form-group">

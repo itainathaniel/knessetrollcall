@@ -35,7 +35,7 @@ class UserisAdmin
     public function handle($request, Closure $next)
     {
         if ($this->auth->guest() || !$this->auth->user()->isAdmin()) {
-            return redirect('/');
+            return redirect('/login');
         }
 
         return $next($request);

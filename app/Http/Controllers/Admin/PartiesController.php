@@ -2,12 +2,11 @@
 
 namespace KnessetRollCall\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 
+use KnessetRollCall\Party;
+use Illuminate\Http\Request;
 use KnessetRollCall\Http\Requests;
 use KnessetRollCall\Http\Controllers\Controller;
-use KnessetRollCall\Party;
-use KnessetRollCall\Http\Requests\UpdateParty;
 
 class PartiesController extends Controller
 {
@@ -29,9 +28,15 @@ class PartiesController extends Controller
         return view('admin.parties.edit', compact('party'));
     }
 
-    public function update(UpdateParty $request)
+    public function update(Request $request, Party $party)
     {
-        dd($request->all());
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        $party->update($request->all());
+
+        return redirect()->back();
     }
 
 }

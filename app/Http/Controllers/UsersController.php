@@ -3,6 +3,7 @@
 namespace KnessetRollCall\Http\Controllers;
 
 use Illuminate\Http\Request;
+use KnessetRollCall\Http\Requests\UpdateUser;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -36,40 +37,10 @@ class UsersController extends Controller
         return view('users.edit', compact('user'));
     }
 
-    public function update(Request $request)
+    public function update(UpdateUser $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,id,' . Auth::user()->id,
-            'password' => 'required_with:password_confirmation',
-            'password_confirmation' => 'required_with:password|same:password',
-        ]);
-
-        $user = User::find(Auth::user()->id)->first();
-        $user->update($request->all());
-
-        $save = false;
-        if ($request->input('mail_daily') == null) {
-            $user->mail_daily = false;
-            $save = true;
-        }
-        if ($request->input('mail_weekly') == null) {
-            $user->mail_weekly = false;
-            $save = true;
-        }
-        if ($request->input('mail_monthly') == null) {
-            $user->mail_monthly = false;
-            $save = true;
-        }
-
-        if (!empty($request->input('password'))) {
-            $user->password = Hash::make($request->input('password'));
-            $save = true;
-        }
-
-        if ($save) {
-            $user->save();
-        }
+        $user = User::find(Auth::user()->id)->firstOrFail();
+        $user->updateSettings($request);
 
         return redirect()->back();
     }

@@ -63,7 +63,13 @@ Route::get('profile/{user}', 'UsersController@show');
 
 Route::group(['namespace' => 'Admin', 'middleware' => 'admin', 'prefix' => 'admin'], function()
 {
-    Route::get('dashboard', 'AdminController@index');
+    Route::get('/', function(){
+        return redirect()->route('dashboard');
+    });
+    Route::get('dashboard', [
+        'name' => 'dashboard',
+        'uses' => 'AdminController@index'
+    ]);
     Route::resource('users', 'UsersController');
     Route::resource('knessetmembers', 'KnessetMembersController');
     Route::resource('parties', 'PartiesController');

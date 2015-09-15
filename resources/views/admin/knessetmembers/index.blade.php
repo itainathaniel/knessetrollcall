@@ -1,60 +1,56 @@
 @extends('admin.layout')
 
 @section('content')
-    <h1 class="page-header">Users</h1>
+    <div class="page-header">
+        <a href="#" class="btn btn-warning pull-left hide">סינון</a>
+        <h1>חברי כנסת</h1>
+    </div>
 
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
             <tr>
-                <th rowspan="2">#</th>
-                <th rowspan="2">Name</th>
-                <th rowspan="2">Email</th>
-                <th rowspan="2">Verified</th>
-                <th rowspan="2">Join date</th>
-                <th colspan="3">Email Digest</th>
-            </tr>
-            <tr>
-                <th>Daily</th>
-                <th>Weekly</th>
-                <th>Monthly</th>
+                <th>#</th>
+                <th>שם</th>
+                <th>מפלגה</th>
+                <th>בכנסת עכשיו?</th>
+                <th>מספר בכנסת</th>
+                <th>פעיל</th>
+                <th>תאריך הוספה</th>
+                <th>תאריך עדכון אחרון</th>
             </tr>
             </thead>
             <tbody>
             @foreach($users as $user)
                 <tr>
-                    <td>{{ $user->id }}</td>
-                    <td>{{ $user->name }}</td>
-                    <td>{{ $user->email }}</td>
-                    <td>{{ $user->verified }}</td>
+                    <td>
+                        <a href="{{ action('Admin\KnessetMembersController@edit', $user) }}">{{ $user->id }}</a>
+                    </td>
+                    <td>
+                        <a href="{{ action('Admin\KnessetMembersController@edit', $user) }}">{{ $user->name }}</a>
+                    </td>
+                    <td>
+                        <a href="{{ action('Admin\PartiesController@edit', $user->party) }}">{{ $user->party->name }}</a>
+                    </td>
+                    <td>
+                        @if ($user->isInside)
+                            <span class="text-success glyphicon glyphicon-ok"></span>
+                        @else
+                            <span class="text-danger glyphicon glyphicon-remove"></span>
+                        @endif
+                    </td>
+                    <td>
+                        <a href="http://knesset.gov.il/mk/heb/mk.asp?mk_individual_id_t={{ $user->knesset_id }}" target="_blank">{{ $user->knesset_id }}</a>
+                    </td>
+                    <td>
+                        @if ($user->active)
+                            <span class="text-success glyphicon glyphicon-ok"></span>
+                        @else
+                            <span class="text-danger glyphicon glyphicon-remove"></span>
+                        @endif
+                    </td>
                     <td>{{ $user->created_at->format('d/m/Y H:i') }}</td>
-                    <td>
-                        <span class="glyphicon
-                        @if ($user->mail_daily)
-                                glyphicon-ok
-                            @else
-                                glyphicon-remove
-                            @endif
-                        " aria-hidden="true"></span>
-                    </td>
-                    <td>
-                        <span class="glyphicon
-                        @if ($user->mail_weekly)
-                                glyphicon-ok
-                            @else
-                                glyphicon-remove
-                            @endif
-                        " aria-hidden="true"></span>
-                    </td>
-                    <td>
-                        <span class="glyphicon
-                        @if ($user->mail_monthly)
-                                glyphicon-ok
-                            @else
-                                glyphicon-remove
-                            @endif
-                        " aria-hidden="true"></span>
-                    </td>
+                    <td>{{ $user->updated_at->format('d/m/Y H:i') }}</td>
                 </tr>
             @endforeach
             </tbody>
