@@ -2,7 +2,20 @@
 
 @section('content')
     <div class="page-header">
-        <a href="#" class="btn btn-warning pull-left hide">סינון</a>
+        <div class="dropdown pull-left">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                סינון<span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="{{ action('Admin\KnessetMembersController@index') }}?active=0">לא פעילים</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="{{ action('Admin\KnessetMembersController@index') }}?isInside=1">בכנסת עכשיו</a></li>
+                <li><a href="{{ action('Admin\KnessetMembersController@index') }}?isInside=0">מחוץ לכנסת עכשיו</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="{{ action('Admin\KnessetMembersController@index') }}?party_is_coalition=1">מהקואליציה</a></li>
+                <li><a href="{{ action('Admin\KnessetMembersController@index') }}?party_is_coalition=0">מהאופוזיציה</a></li>
+            </ul>
+        </div>
         <h1>חברי כנסת</h1>
     </div>
 

@@ -17,6 +17,13 @@
                     <input type="text" name="name" id="name" class="form-control" value="{{ $party->name }}">
                 </div>
                 <div class="form-group">
+                    <label for="is_coalition">בקואליציה?</label>
+                    <select name="is_coalition" id="is_coalition" class="form-control">
+                        <option value="0" {{ $party->is_coalition == 0 ? 'selected' : '' }}>לא</option>
+                        <option value="1" {{ $party->is_coalition == 1 ? 'selected' : '' }}>כן</option>
+                    </select>
+                </div>
+                <div class="form-group">
                     <label for="name">תאריך הוספה</label>
                     <pre>{{ $party->created_at->format('d/m/Y H:i:s') }}</pre>
                 </div>

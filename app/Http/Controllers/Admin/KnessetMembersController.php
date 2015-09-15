@@ -14,10 +14,21 @@ class KnessetMembersController extends Controller
 
     public function index(Request $request)
     {
+
+
+
         if (($request->input('party_id')) !== null) {
-            $users = KnessetMember::wherepartyId($request->input('party_id'))->get();
+            $users = KnessetMember::wherePartyId($request->input('party_id'))->orderByName()->get();
+        } elseif (($request->input('active')) !== null) {
+            $users = KnessetMember::whereActive($request->input('active'))->orderByName()->get();
+        } elseif (($request->input('isInside')) !== null) {
+            $users = KnessetMember::where('isInside', $request->input('isInside'))->orderByName()->get();
+        } elseif (($request->input('party_is_coalition')) !== null) {
+			$users = KnessetMember::whereIn('party_id', function($query) {
+				$query->select('id')->from('parties')->whereIsCoalition(true);
+            })->orderByName()->get();
         } else {
-            $users = KnessetMember::all();
+            $users = KnessetMember::orderByName()->get();
         }
 
         return view('admin.knessetmembers.index', compact('users'));

@@ -29,6 +29,11 @@ class KnessetMember extends Model
         return $query->orderBy('isInside', 'desc');
     }
 
+    public function scopeOrderByName($query)
+    {
+        return $query->orderBy('name', 'asc');
+    }
+
     public function party()
     {
         return $this->belongsTo('KnessetRollCall\Party');

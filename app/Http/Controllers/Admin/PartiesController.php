@@ -11,9 +11,13 @@ use KnessetRollCall\Http\Controllers\Controller;
 class PartiesController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $parties = Party::all();
+        if (($request->input('is_coalition')) !== null) {
+            $parties = Party::whereIsCoalition($request->input('is_coalition'))->get();
+        } else {
+            $parties = Party::all();
+        }
 
         return view('admin.parties.index', compact('parties'));
     }

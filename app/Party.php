@@ -9,7 +9,8 @@ class Party extends Model
 {
 
     protected $fillable = [
-        'name'
+        'name',
+        'is_coalition'
     ];
 
     public function knessetMembers()

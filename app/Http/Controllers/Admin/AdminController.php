@@ -22,7 +22,7 @@ class AdminController extends Controller
         $total_knessetmembers = KnessetMember::count();
         $total_knessetmembers_inactive = KnessetMember::whereActive(false)->count();
         $total_parties = Party::count();
-        $total_parties_coalition = 6;
+        $total_parties_coalition = Party::whereIsCoalition(true)->count();
 
         return view('admin.admin.dashboard', compact(
             'users',

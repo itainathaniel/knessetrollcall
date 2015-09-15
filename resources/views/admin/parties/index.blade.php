@@ -1,7 +1,15 @@
 @extends('admin.layout')
 
 @section('content')
-    <h1 class="page-header">מפלגות</h1>
+    <div class="page-header">
+        <h1>
+            מפלגות
+            <small class="pull-left">
+                <a href="{{ action('Admin\PartiesController@index') }}?is_coalition=1">קואליציה</a>
+                <a href="{{ action('Admin\PartiesController@index') }}?is_coalition=0">אופוזיציה</a>
+            </small>
+        </h1>
+    </div>
 
     <div class="table-responsive">
         <table class="table table-striped">
@@ -11,6 +19,7 @@
                     <th>שם</th>
                     <th>חברי כנסת פעילים</th>
                     <th>כל חברי הכנסת</th>
+                    <th>קואליציה</th>
                     <th>תאריך הוספה</th>
                     <th>תאריך עדכון אחרון</th>
                 </tr>
@@ -27,6 +36,13 @@
                     <td>{{ count($party->allknessetmembers) }}</td>
                     <td>
                         <a href="{{ action('Admin\KnessetMembersController@index') }}?party_id={{ $party->id }}">{{ count($party->knessetMembers) }}</a>
+                    </td>
+                    <td>
+                        @if ($party->is_coalition)
+                            <span class="text-success glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        @else
+                            <span class="text-danger glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        @endif
                     </td>
                     <td>{{ $party->created_at->format('d/m/Y H:i') }}</td>
                     <td>{{ $party->updated_at->format('d/m/Y H:i') }}</td>
