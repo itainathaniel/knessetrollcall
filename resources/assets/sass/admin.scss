@@ -58,3 +58,13 @@ body {
 .main .page-header {
     margin-top: 0;
 }
+
+
+.stats {
+    .stat {
+        border: 5px solid navy;
+        border-radius: 90px;
+        display: inline-block;
+        padding: 30px 20px;
+    }
+}

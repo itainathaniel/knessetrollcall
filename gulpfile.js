@@ -16,7 +16,7 @@ elixir.config.sourcemaps = false;
 elixir(function(mix) {
 
     var paths = {
-        'jquery': './vendor/components/',
+        'jquery': './vendor/components/jquery/',
         'bootstrap': './vendor/twbs/bootstrap/dist/'
     };
 
@@ -38,10 +38,13 @@ elixir(function(mix) {
         'admin.css'
     ], 'public/css/admin.css', 'resources/css');
 
-    //mix.scripts([
-    //    'vendor/jQuery.min.js',
-    //    'vendor/bootstrap.min.js',
-    //    'vendor/select2.js',
-    //]);
+    mix.copy(paths.jquery + 'jquery.min.js', 'resources/js/vendor');
+    mix.copy(paths.bootstrap + 'js/bootstrap.min.js', 'resources/js/vendor');
+
+    mix.scripts([
+        'vendor/jquery.min.js',
+        'vendor/bootstrap.min.js',
+        //'vendor/select2.js',
+    ], 'public/js/admin.js', 'resources/js');
 
 });
