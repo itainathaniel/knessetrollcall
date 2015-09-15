@@ -45,5 +45,6 @@ class Kernel extends ConsoleKernel
         $schedule->command('krc:mail:daily')->dailyAt('7:00');
         $schedule->command('krc:mail:weekly')->weekly()->sundays()->at('7:00');
         $schedule->command('krc:mail:monthly')->monthly()->at('7:00');
+        $schedule->command('db:backup --database=mysql --compression=null --destination=dropbox --destinationPath=`date +\%Y-%m-%d`-production.sql')->dailyAt('16:15');
     }
 }
