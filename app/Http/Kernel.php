@@ -29,5 +29,6 @@ class Kernel extends HttpKernel
         'auth' => \KnessetRollCall\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \KnessetRollCall\Http\Middleware\RedirectIfAuthenticated::class,
+        'admin' => \KnessetRollCall\Http\Middleware\UserisAdmin::class,
     ];
 }

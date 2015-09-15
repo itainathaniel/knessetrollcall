@@ -15,7 +15,16 @@ elixir.config.sourcemaps = false;
 
 elixir(function(mix) {
 
+    var paths = {
+        'jquery': './vendor/components/jquery/',
+        'bootstrap': './vendor/twbs/bootstrap/dist/'
+    };
+
     mix.sass('app.scss', 'resources/css');
+    mix.sass('admin.scss', 'resources/css/admin.css');
+
+    mix.copy(paths.bootstrap + 'fonts/**', 'public/fonts');
+    mix.copy(paths.bootstrap + 'css/bootstrap.min.css', 'resources/css/vendor');
 
     mix.styles([
         'vendor/bootstrap.min.css',
@@ -23,10 +32,19 @@ elixir(function(mix) {
         'app.css'
     ], 'public/css/all.css', 'resources/css');
 
-    //mix.scripts([
-    //    'vendor/jQuery.min.js',
-    //    'vendor/bootstrap.min.js',
-    //    'vendor/select2.js',
-    //]);
+    mix.styles([
+        'vendor/bootstrap.min.css',
+        'vendor/bootstrap-rtl.min.css',
+        'admin.css'
+    ], 'public/css/admin.css', 'resources/css');
+
+    mix.copy(paths.jquery + 'jquery.min.js', 'resources/js/vendor');
+    mix.copy(paths.bootstrap + 'js/bootstrap.min.js', 'resources/js/vendor');
+
+    mix.scripts([
+        'vendor/jquery.min.js',
+        'vendor/bootstrap.min.js',
+        //'vendor/select2.js',
+    ], 'public/js/admin.js', 'resources/js');
 
 });

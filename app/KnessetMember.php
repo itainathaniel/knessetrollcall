@@ -10,7 +10,14 @@ class KnessetMember extends Model
 
     protected $table = 'knessetmembers';
 
-    protected $fillable = [];
+    protected $fillable = [
+        'knesset_id',
+        'party_id',
+        'name',
+        'image',
+        'isInside',
+        'active',
+    ];
 
     public function scopeActive($query)
     {

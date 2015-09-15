@@ -39,19 +39,38 @@ Route::get('outside', [
     'uses' => 'KnessetMembersController@outside'
 ]);
 
-//Route::get('weekly', function(){
-//    $members = \KnessetRollCall\KnessetMember::all();
-//    return view('emails.weekly', compact('members'));
-//});
+// Authentication routes...
+Route::get('login', 'Auth\AuthController@getLogin');
+Route::post('login', 'Auth\AuthController@postLogin');
+Route::get('logout', 'Auth\AuthController@getLogout');
 
-//Route::get('tweeting-test', function()
-//{
-//    return Twitter::postTweet(array('status' => 'שלום טוויטר! #myfirstTweet #laravel', 'format' => 'json'));
-//});
+// Registration routes...
+Route::get('register', 'Auth\AuthController@getRegister');
+Route::post('register', 'Auth\AuthController@postRegister');
 
-//Route::get('cron-test', function()
-//{
-//    return 'testing';
-//});
+// Password reset link request routes...
+Route::get('password/email', 'Auth\PasswordController@getEmail');
+Route::post('password/email', 'Auth\PasswordController@postEmail');
 
-//Route::get('test', function () {});
+// Password reset routes...
+Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
+Route::post('password/reset', 'Auth\PasswordController@postReset');
+
+Route::get('profile', 'UsersController@show');
+Route::get('profile/edit', 'UsersController@edit');
+Route::post('profile/edit', 'UsersController@update');
+Route::get('profile/{user}', 'UsersController@show');
+
+Route::group(['namespace' => 'Admin', 'middleware' => 'admin', 'prefix' => 'admin'], function()
+{
+    Route::get('/', function(){
+        return redirect()->route('dashboard');
+    });
+    Route::get('dashboard', [
+        'name' => 'dashboard',
+        'uses' => 'AdminController@index'
+    ]);
+    Route::resource('users', 'UsersController');
+    Route::resource('knessetmembers', 'KnessetMembersController');
+    Route::resource('parties', 'PartiesController');
+});
