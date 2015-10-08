@@ -34,8 +34,8 @@ class mailAdmin
 
         $knessetMember = KnessetMember::find($event->KnessetMember->id);
 
-        Mail::send('emails.raw', ['content' => print_r($knessetMember->toArray(), 1)], function($message){
-            $message->to('itainathaniel@gmail.com')->subject('New Knesset Member!');
+        Mail::send('emails.new-member', ['knessetMember' => $knessetMember], function($message){
+            $message->to('itainathaniel@gmail.com')->subject(Lang::get('emails.new-member.subject'));
         });
     }
 }

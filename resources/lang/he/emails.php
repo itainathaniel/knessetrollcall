@@ -41,4 +41,7 @@ return array(
         'absent' => 'נעדרו התקופה (:count)',
         'present' => 'נכחו התקופה (:count)',
     ],
+    'new-member' => [
+        'subject' => 'חבר/ת כנסת חדש/ה!',
+    ],
 );
