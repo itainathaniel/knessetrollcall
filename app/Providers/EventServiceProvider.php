@@ -13,9 +13,17 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'KnessetRollCall\Events\SomeEvent' => [
-            'KnessetRollCall\Listeners\EventListener',
+//        'KnessetRollCall\Events\SomeEvent' => [
+//            'KnessetRollCall\Listeners\EventListener',
+//        ],
+        'KnessetRollCall\Events\errorFetchingLogEntries' => [
+            'KnessetRollCall\Listeners\mailError',
         ],
+        'KnessetRollCall\Events\newKnessetMember' => [
+            'KnessetRollCall\Listeners\mailAdmin',
+        ],
+//        'knessetMemberIn' => [],
+//        'knessetMemberOut' => [],
     ];
 
     /**

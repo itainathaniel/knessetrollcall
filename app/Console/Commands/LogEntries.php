@@ -2,6 +2,9 @@
 
 namespace KnessetRollCall\Console\Commands;
 
+use KnessetRollCall\Events\errorFetchingLogEntries;
+use KnessetRollCall\Events\newKnessetMember;
+use Log;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
@@ -47,8 +50,11 @@ class LogEntries extends Command
     {
         try {
             $html = new Htmldom('http://www.knesset.gov.il/presence/heb/PresentList.aspx');
-        } catch (ErrorException $e) {
-            $this->error('Error while fetching Knesset site.');
+        } catch (\Exception $e) {
+            $error = 'Error while fetching Knesset site.';
+            Log::alert($error);
+            $this->error($error);
+            Event::fire(new errorFetchingLogEntries($error));
             return;
         }
 
@@ -85,16 +91,15 @@ class LogEntries extends Command
 
                     if ($knessetMember->isInside) {
                         $membersIn[] = $knessetMember;
-                        $event = 'LogEntries.knessetMemberIn';
+//                        Event::fire(new knessetMemberIn, array($knessetMember));
                     } else {
                         $membersOut[] = $knessetMember;
-                        $event = 'LogEntries.knessetMemberOut';
+//                        Event::fire(new knessetMemberOut, array($knessetMember));
                     }
-                    Event::fire($event, array($knessetMember));
 
-                    $Tweet = new Tweet();
-                    $Tweet['tweet'] = $knessetMember->name . ' is now ' . ($knessetMember->isInside ? 'inside' : 'outside') . ' the Knesset building';
-                    $Tweet->save();
+//                    $Tweet = new Tweet();
+//                    $Tweet['tweet'] = $knessetMember->name . ' is now ' . ($knessetMember->isInside ? 'inside' : 'outside') . ' the Knesset building';
+//                    $Tweet->save();
                 }
             } catch (ModelNotFoundException $e) {
                 // echo $e->getMessage();
@@ -109,7 +114,7 @@ class LogEntries extends Command
 
                     $KnessetMember->save();
 
-                    Event::fire('LogEntries.newKnessetMember', array($KnessetMember));
+                    Event::fire(new newKnessetMember($KnessetMember));
                 } catch (QueryException $e) {
                     // echo $e->getMessage();
                 }
@@ -124,10 +129,10 @@ class LogEntries extends Command
                 $membersIds2tweet[] = $member->id;
             }
 
-            $Tweet = new Tweet();
-            $Tweet['tweet'] = Lang::choice('tweets.enter', count($members2tweet), array('members' => implode(', ', $members2tweet)));
-            $Tweet['metadata'] = json_encode(['ids' => $membersIds2tweet, 'action' => 1]);
-            $Tweet->save();
+//            $Tweet = new Tweet();
+//            $Tweet['tweet'] = Lang::choice('tweets.enter', count($members2tweet), array('members' => implode(', ', $members2tweet)));
+//            $Tweet['metadata'] = json_encode(['ids' => $membersIds2tweet, 'action' => 1]);
+//            $Tweet->save();
         }
 
         if (!empty($membersOut)) {
@@ -138,13 +143,14 @@ class LogEntries extends Command
                 $membersIds2tweet[] = $member->id;
             }
 
-            $Tweet = new Tweet();
-            $Tweet['tweet'] = Lang::choice('tweets.exit', count($members2tweet), array('members' => implode(', ', $members2tweet)));
-            $Tweet['metadata'] = json_encode(['ids' => $membersIds2tweet, 'action' => 0]);
-            $Tweet->save();
+//            $Tweet = new Tweet();
+//            $Tweet['tweet'] = Lang::choice('tweets.exit', count($members2tweet), array('members' => implode(', ', $members2tweet)));
+//            $Tweet['metadata'] = json_encode(['ids' => $membersIds2tweet, 'action' => 0]);
+//            $Tweet->save();
         }
 
         $this->info(count($membersIn).' נכנסו');
         $this->info(count($membersOut).' יצאו');
+        Log::notice(count($membersIn) . ' in, ' . count($membersOut) . ' out');
     }
 }
