@@ -60,7 +60,7 @@ class LogEntries extends Command
 
         $tds = $html->getElementById('dlMkMembers')->find('td');
 
-        $members = array();
+        $dlMkMembers = array();
         $membersIn = array();
         $membersOut = array();
 
@@ -68,11 +68,29 @@ class LogEntries extends Command
             $a = $td->find('a', 0);
             $image = $td->find('img', 0);
 
-            $members[$k]['knessetId'] = str_replace('/mk/heb/mk.asp?mk_individual_id_t=', '', $a->href);
-            $members[$k]['name'] = iconv('ISO-8859-8', 'UTF-8', $a->plaintext);
-            $members[$k]['isInside'] = $image->class == 'PhotoAsist';
-            $members[$k]['image'] = $image->src;
+            $dlMkMembers[$k]['knessetId'] = str_replace('/mk/heb/mk.asp?mk_individual_id_t=', '', $a->href);
+            $dlMkMembers[$k]['name'] = iconv('ISO-8859-8', 'UTF-8', $a->plaintext);
+            $dlMkMembers[$k]['isInside'] = $image->class == 'PhotoAsist';
+            $dlMkMembers[$k]['image'] = $image->src;
         }
+
+        $tds = $html->getElementById('dlMinister')->find('td');
+
+        $dlMinister = array();
+
+        foreach ($tds as $k => $td) {
+            $a = $td->find('a', 0);
+            if (!is_null($a)) {
+                $image = $td->find('img', 0);
+
+                $dlMinister[$k]['knessetId'] = str_replace('/mk/heb/mk.asp?mk_individual_id_t=', '', $a->href);
+                $dlMinister[$k]['name'] = iconv('ISO-8859-8', 'UTF-8', $a->plaintext);
+                $dlMinister[$k]['isInside'] = $image->class == 'PhotoAsist';
+                $dlMinister[$k]['image'] = $image->src;
+            }
+        }
+
+        $members = array_merge($dlMkMembers, $dlMinister);
 
         foreach ($members as $member) {
             // check if member current state is different from logged
