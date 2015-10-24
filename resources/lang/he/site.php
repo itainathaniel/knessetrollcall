@@ -5,7 +5,8 @@ return array(
         'main' => 'ראשי',
         'parties' => 'כל המפלגות',
         'nowInside' => 'עכשיו בכנסת',
-        'about' => 'אודות'
+        'table' => 'טבלת נוכחות',
+        'about' => 'אודות',
     ],
     'footer' => [
         'link-about' => 'אודות',

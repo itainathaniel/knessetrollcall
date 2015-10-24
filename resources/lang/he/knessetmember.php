@@ -14,4 +14,12 @@ return [
     ],
     'now_inside' => 'עכשיו במשכן הכנסת, כבר :hours שעות',
     'ribbon_inside' => 'בכנסת',
+    'alltime_table' => [
+        'title' => 'נוכחות מאז 21/06/2015',
+        'header' => 'נוכחות מאז 21/06/2015',
+        'name' => 'שם הח״כ',
+        'party' => 'מפלגה',
+        'custom_minutes' => 'דקות',
+        'custom_hours' => 'שעות',
+    ],
 ];

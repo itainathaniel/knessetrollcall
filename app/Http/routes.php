@@ -39,6 +39,8 @@ Route::get('outside', [
     'uses' => 'KnessetMembersController@outside'
 ]);
 
+Route::get('leaderboard', 'KnessetMembersController@allTimeTable');
+
 // Authentication routes...
 Route::get('login', 'Auth\AuthController@getLogin');
 Route::post('login', 'Auth\AuthController@postLogin');

@@ -30,6 +30,7 @@
                     <li role="presentation" @yield('nav-active-index', '')>{!! link_to_action('PagesController@index', Lang::get('site.nav.main')) !!}</li>
                     <li role="presentation" @yield('nav-active-parties', '')>{!! link_to_action('PartiesController@index', Lang::get('site.nav.parties')) !!}</li>
                     <li role="presentation" @yield('nav-active-inside', '')>{!! link_to_route('inside_path', Lang::get('site.nav.nowInside')) !!}</li>
+                    <li role="presentation" @yield('nav-active-table', '')>{!! link_to_action('KnessetMembersController@allTimeTable', Lang::get('site.nav.table')) !!}</li>
                     <li role="presentation" @yield('nav-active-about', '')>{!! link_to_action('PagesController@about', Lang::get('site.nav.about')) !!}</li>
                     {{--<li role="presentation" @yield('nav-active-contact', '')>{!! link_to_action('PagesController@contact', Lang::get('index.footer.link-contact')) !!}</li>--}}
                     @if (Auth::check())

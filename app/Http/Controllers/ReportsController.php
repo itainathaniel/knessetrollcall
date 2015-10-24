@@ -19,7 +19,7 @@ class ReportsController extends Controller
 
     protected $title;
 
-    protected $present;
+    public $present;
 
     protected $absent;
 
