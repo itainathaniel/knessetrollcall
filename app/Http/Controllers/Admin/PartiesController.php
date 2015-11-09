@@ -2,15 +2,12 @@
 
 namespace KnessetRollCall\Http\Controllers\Admin;
 
-
-use KnessetRollCall\Party;
 use Illuminate\Http\Request;
-use KnessetRollCall\Http\Requests;
 use KnessetRollCall\Http\Controllers\Controller;
+use KnessetRollCall\Party;
 
 class PartiesController extends Controller
 {
-
     public function index(Request $request)
     {
         if (($request->input('is_coalition')) !== null) {
@@ -42,5 +39,4 @@ class PartiesController extends Controller
 
         return redirect()->back();
     }
-
 }

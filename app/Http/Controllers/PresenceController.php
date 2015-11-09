@@ -1,9 +1,7 @@
-<?php namespace KnessetRollCall\Http\Controllers;
+<?php
 
-use KnessetRollCall\Http\Requests;
-use KnessetRollCall\Http\Requests\PageRequest;
-use KnessetRollCall\Http\Controllers\Controller;
+namespace KnessetRollCall\Http\Controllers;
 
-class PresenceController extends Controller {
-
+class PresenceController extends Controller
+{
 }

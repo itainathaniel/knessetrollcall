@@ -2,12 +2,12 @@
 
 return [
     'title' => 'אדמין - מרכז הבקרה',
-    'nav' => [
+    'nav'   => [
         'top' => [
-            'home' => 'בית',
-            'users' => 'משתמשים',
+            'home'           => 'בית',
+            'users'          => 'משתמשים',
             'knessetmembers' => 'חברי כנסת',
-            'parties' => 'מפלגות'
+            'parties'        => 'מפלגות',
         ],
         'side' => [],
     ],

@@ -2,18 +2,12 @@
 
 namespace KnessetRollCall\Http\Controllers;
 
-use Illuminate\Http\Request;
-use KnessetRollCall\Http\Requests\UpdateUser;
-
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use KnessetRollCall\Http\Requests;
-use KnessetRollCall\Http\Controllers\Controller;
+use KnessetRollCall\Http\Requests\UpdateUser;
 use KnessetRollCall\User;
 
 class UsersController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -44,5 +38,4 @@ class UsersController extends Controller
 
         return redirect()->back();
     }
-
 }

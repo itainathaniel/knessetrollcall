@@ -2,9 +2,7 @@
 
 namespace KnessetRollCall\Events;
 
-use KnessetRollCall\Events\Event;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 class newKnessetMember extends Event
 {

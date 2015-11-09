@@ -2,11 +2,7 @@
 
 namespace KnessetRollCall\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\DB;
-use KnessetRollCall\Http\Requests;
-use KnessetRollCall\Http\Controllers\Controller;
 use KnessetRollCall\KnessetMember;
 use KnessetRollCall\Presence;
 use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
@@ -59,7 +55,7 @@ class ReportsController extends Controller
             $this->minutesPerKM
         );
 
-        $css = file_get_contents(public_path() . $this->css_path);
+        $css = file_get_contents(public_path().$this->css_path);
 
         $converter = new CssToInlineStyles();
         $converter->setHTML($this->html);
@@ -67,7 +63,7 @@ class ReportsController extends Controller
         $converter->setUseInlineStylesBlock();
         $converter->setCleanup();
         $converter->setStripOriginalStyleTags();
-        $content =  $converter->convert();
+        $content = $converter->convert();
 
         return $content;
     }
@@ -83,14 +79,14 @@ class ReportsController extends Controller
     }
 
     /**
-     * Set the output title for the report
+     * Set the output title for the report.
      */
     private function setTitle()
     {
         $this->title = $this->start_date;
 
         if ($this->start_date != $this->end_date) {
-            $this->title .= ' - ' . $this->end_date;
+            $this->title .= ' - '.$this->end_date;
         }
     }
 
@@ -138,11 +134,11 @@ class ReportsController extends Controller
      * @param $minutes
      * @param $parties
      * @param $minutesPerKM
+     *
      * @return string
      */
     private function setHTML($dates_title, $present, $absent, $minutes, $parties, $minutesPerKM)
     {
         $this->html = view($this->view, compact('dates_title', 'present', 'absent', 'minutes', 'parties', 'minutesPerKM'))->render();
     }
-
 }

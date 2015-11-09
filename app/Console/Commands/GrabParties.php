@@ -44,17 +44,18 @@ class GrabParties extends Command
     {
         $members = KnessetMember::wherePartyId(0)->take(10)->get();
 
-        if (count($members) == 0)
-        {
+        if (count($members) == 0) {
             $this->comment('No members to update.');
+
             return;
         }
 
         foreach ($members as $member) {
             try {
-                $html = new Htmldom('http://www.knesset.gov.il/mk/heb/mk.asp?mk_individual_id_t=' . $member->knesset_id);
+                $html = new Htmldom('http://www.knesset.gov.il/mk/heb/mk.asp?mk_individual_id_t='.$member->knesset_id);
             } catch (ErrorException $e) {
                 $this->error('Error while fetching Knesset site.');
+
                 return;
             }
 
@@ -70,13 +71,13 @@ class GrabParties extends Command
                 $Party->name = $partyName;
                 $Party->save();
 
-                $this->comment("Inserted {".$partyName."} as {".$Party->id."}");
+                $this->comment('Inserted {'.$partyName.'} as {'.$Party->id.'}');
             }
 
             $member->party_id = $Party->id;
             $member->save();
 
-            $this->info("Updated {".$member->name."} to PartyName {".$Party->name."} / PartyId {".$Party->id."}");
+            $this->info('Updated {'.$member->name.'} to PartyName {'.$Party->name.'} / PartyId {'.$Party->id.'}');
         }
     }
 }
