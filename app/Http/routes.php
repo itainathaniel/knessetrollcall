@@ -4,39 +4,38 @@ Route::get('', 'PagesController@index');
 Route::get('about', 'PagesController@about');
 Route::get('contact', 'PagesController@contact');
 
-
 Route::get('parties', [
-    'as' => 'parties_path',
-    'uses' => 'PartiesController@index'
+    'as'   => 'parties_path',
+    'uses' => 'PartiesController@index',
 ]);
 Route::get('party/{party}', [
-    'as' => 'party_path',
-    'uses' => 'PartiesController@show'
+    'as'   => 'party_path',
+    'uses' => 'PartiesController@show',
 ]);
 
 Route::get('member/{member}.json', [
-    'as' => 'member_json_path',
-    'uses' => 'KnessetMembersController@showJson'
+    'as'   => 'member_json_path',
+    'uses' => 'KnessetMembersController@showJson',
 ]);
 Route::get('member/{member}', [
-    'as' => 'member_path',
-    'uses' => 'KnessetMembersController@show'
+    'as'   => 'member_path',
+    'uses' => 'KnessetMembersController@show',
 ]);
 Route::get('member/{member}/log', 'KnessetMembersController@log');
 
 Route::get('tweets', 'TweetsController@index');
 Route::get('tweet/{id}', [
-    'as' => 'tweet_path',
-    'uses' => 'TweetsController@show'
+    'as'   => 'tweet_path',
+    'uses' => 'TweetsController@show',
 ]);
 
 Route::get('inside', [
-    'as' => 'inside_path',
-    'uses' => 'KnessetMembersController@inside'
+    'as'   => 'inside_path',
+    'uses' => 'KnessetMembersController@inside',
 ]);
 Route::get('outside', [
-    'as' => 'outside_path',
-    'uses' => 'KnessetMembersController@outside'
+    'as'   => 'outside_path',
+    'uses' => 'KnessetMembersController@outside',
 ]);
 
 Route::get('leaderboard', 'KnessetMembersController@allTimeTable');
@@ -63,14 +62,13 @@ Route::get('profile/edit', 'UsersController@edit');
 Route::post('profile/edit', 'UsersController@update');
 Route::get('profile/{user}', 'UsersController@show');
 
-Route::group(['namespace' => 'Admin', 'middleware' => 'admin', 'prefix' => 'admin'], function()
-{
-    Route::get('/', function(){
+Route::group(['namespace' => 'Admin', 'middleware' => 'admin', 'prefix' => 'admin'], function () {
+    Route::get('/', function () {
         return redirect()->route('dashboard');
     });
     Route::get('dashboard', [
         'name' => 'dashboard',
-        'uses' => 'AdminController@index'
+        'uses' => 'AdminController@index',
     ]);
     Route::resource('users', 'UsersController');
     Route::resource('knessetmembers', 'KnessetMembersController');

@@ -2,12 +2,11 @@
 
 namespace KnessetRollCall\Console\Commands;
 
-use Illuminate\Console\Command;
 use DateTime;
+use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Mail;
 use KnessetRollCall\Http\Controllers\ReportsController;
-use KnessetRollCall\Presence;
 
 class MailCustomReport extends Command
 {
@@ -54,7 +53,7 @@ class MailCustomReport extends Command
         $report = new ReportsController($start->getTimestamp(), $end->getTimestamp());
         $report->setView('emails.custom');
 
-        Mail::send('emails.raw', ['content' => $report->emailContent()], function($message){
+        Mail::send('emails.raw', ['content' => $report->emailContent()], function ($message) {
             $message->to('itainathaniel@gmail.com')->subject(Lang::get('emails.custom-report.subject'));
         });
     }

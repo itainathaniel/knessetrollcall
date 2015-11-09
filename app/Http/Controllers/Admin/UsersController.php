@@ -3,15 +3,13 @@
 namespace KnessetRollCall\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use KnessetRollCall\User;
-use KnessetRollCall\Http\Requests;
 use Illuminate\Support\Facades\Auth;
-use KnessetRollCall\Http\Requests\UpdateUser;
 use KnessetRollCall\Http\Controllers\Controller;
+use KnessetRollCall\Http\Requests\UpdateUser;
+use KnessetRollCall\User;
 
 class UsersController extends Controller
 {
-
     public function index(Request $request)
     {
         if (($request->input('admin')) !== null) {
@@ -28,9 +26,6 @@ class UsersController extends Controller
             $users = User::all();
         }
 
-
-
-
         return view('admin.users.index', compact('users'));
     }
 
@@ -46,5 +41,4 @@ class UsersController extends Controller
 
         return redirect()->back();
     }
-
 }

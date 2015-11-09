@@ -44,7 +44,7 @@ class GrabImage extends Command
 
         $tds = $html->getElementById('dlMkMembers')->find('td');
 
-        $members = array();
+        $members = [];
 
         foreach ($tds as $k => $td) {
             $a = $td->find('a', 0);

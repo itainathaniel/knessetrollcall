@@ -1,4 +1,6 @@
-<?php namespace KnessetRollCall;
+<?php
+
+namespace KnessetRollCall;
 
 use Illuminate\Database\Eloquent\Model;
 

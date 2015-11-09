@@ -2,17 +2,17 @@
 
 namespace KnessetRollCall\Console\Commands;
 
-use KnessetRollCall\Events\errorFetchingLogEntries;
-use KnessetRollCall\Events\newKnessetMember;
-use Log;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Lang;
 use KnessetRollCall\EntranceLog;
+use KnessetRollCall\Events\errorFetchingLogEntries;
+use KnessetRollCall\Events\newKnessetMember;
 use KnessetRollCall\KnessetMember;
 use KnessetRollCall\Tweet;
+use Log;
 use Yangqi\Htmldom\Htmldom;
 
 class LogEntries extends Command
@@ -55,14 +55,15 @@ class LogEntries extends Command
             Log::alert($error);
             $this->error($error);
             Event::fire(new errorFetchingLogEntries($error));
+
             return;
         }
 
         $tds = $html->getElementById('dlMkMembers')->find('td');
 
-        $dlMkMembers = array();
-        $membersIn = array();
-        $membersOut = array();
+        $dlMkMembers = [];
+        $membersIn = [];
+        $membersOut = [];
 
         foreach ($tds as $k => $td) {
             $a = $td->find('a', 0);
@@ -76,7 +77,7 @@ class LogEntries extends Command
 
         $tds = $html->getElementById('dlMinister')->find('td');
 
-        $dlMinister = array();
+        $dlMinister = [];
 
         foreach ($tds as $k => $td) {
             $a = $td->find('a', 0);
@@ -98,7 +99,7 @@ class LogEntries extends Command
                 $knessetMember = KnessetMember::whereKnessetId($member['knessetId'])->firstOrFail();
 
                 if ($knessetMember->isInside == $member['isInside']) {
-//                echo $knessetMember->name . ' is still ' . ($knessetMember->isInside ? 'inside' : 'outside') . ' the Knesset building<br>';
+                    //                echo $knessetMember->name . ' is still ' . ($knessetMember->isInside ? 'inside' : 'outside') . ' the Knesset building<br>';
                 } else {
                     $knessetMember->updatePresence($member['isInside']);
 
@@ -169,6 +170,6 @@ class LogEntries extends Command
 
         $this->info(count($membersIn).' נכנסו');
         $this->info(count($membersOut).' יצאו');
-        Log::notice(count($membersIn) . ' in, ' . count($membersOut) . ' out');
+        Log::notice(count($membersIn).' in, '.count($membersOut).' out');
     }
 }

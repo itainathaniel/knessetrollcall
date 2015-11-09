@@ -2,9 +2,6 @@
 
 namespace KnessetRollCall\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-
-use KnessetRollCall\Http\Requests;
 use KnessetRollCall\Http\Controllers\Controller;
 use KnessetRollCall\KnessetMember;
 use KnessetRollCall\Party;
@@ -12,7 +9,6 @@ use KnessetRollCall\User;
 
 class AdminController extends Controller
 {
-
     public function index()
     {
         $users = User::latest()->limit(10)->get();
@@ -31,5 +27,4 @@ class AdminController extends Controller
             'total_parties', 'total_parties_coalition'
         ));
     }
-
 }

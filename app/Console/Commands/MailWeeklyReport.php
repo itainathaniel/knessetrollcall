@@ -46,7 +46,7 @@ class MailWeeklyReport extends Command
         $report = new ReportsController($start_time, $end_time);
         $report->setView('emails.weekly');
 
-        Mail::send('emails.raw', ['content' => $report->emailContent()], function($message){
+        Mail::send('emails.raw', ['content' => $report->emailContent()], function ($message) {
             $message->to('itainathaniel@gmail.com')->subject(Lang::get('emails.weekly-report.subject'));
         });
     }

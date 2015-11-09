@@ -3,7 +3,6 @@
 namespace KnessetRollCall\Http\Requests;
 
 use Illuminate\Support\Facades\Auth;
-use KnessetRollCall\Http\Requests\Request;
 
 class UpdateUser extends Request
 {
@@ -25,9 +24,9 @@ class UpdateUser extends Request
     public function rules()
     {
         return [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,id,' . Auth::user()->id,
-            'password' => 'required_with:password_confirmation',
+            'name'                  => 'required',
+            'email'                 => 'required|email|unique:users,id,'.Auth::user()->id,
+            'password'              => 'required_with:password_confirmation',
             'password_confirmation' => 'required_with:password|same:password',
         ];
     }

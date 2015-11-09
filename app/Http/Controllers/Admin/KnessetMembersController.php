@@ -3,20 +3,14 @@
 namespace KnessetRollCall\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-
-use KnessetRollCall\Http\Requests;
 use KnessetRollCall\Http\Controllers\Controller;
 use KnessetRollCall\KnessetMember;
 use KnessetRollCall\Party;
 
 class KnessetMembersController extends Controller
 {
-
     public function index(Request $request)
     {
-
-
-
         if (($request->input('party_id')) !== null) {
             $users = KnessetMember::wherePartyId($request->input('party_id'))->orderByName()->get();
         } elseif (($request->input('active')) !== null) {
@@ -24,8 +18,8 @@ class KnessetMembersController extends Controller
         } elseif (($request->input('isInside')) !== null) {
             $users = KnessetMember::where('isInside', $request->input('isInside'))->orderByName()->get();
         } elseif (($request->input('party_is_coalition')) !== null) {
-			$users = KnessetMember::whereIn('party_id', function($query) {
-				$query->select('id')->from('parties')->whereIsCoalition(true);
+            $users = KnessetMember::whereIn('party_id', function ($query) {
+                $query->select('id')->from('parties')->whereIsCoalition(true);
             })->orderByName()->get();
         } else {
             $users = KnessetMember::orderByName()->get();
@@ -45,16 +39,15 @@ class KnessetMembersController extends Controller
     {
         $this->validate($request, [
             'knesset_id' => 'required',
-            'party_id' => 'required',
-            'name' => 'required',
-            'image' => 'required',
-            'isInside' => 'required|boolean',
-            'active' => 'required|boolean',
+            'party_id'   => 'required',
+            'name'       => 'required',
+            'image'      => 'required',
+            'isInside'   => 'required|boolean',
+            'active'     => 'required|boolean',
         ]);
 
         $knessetMember->update($request->all());
 
         return redirect()->back();
     }
-
 }

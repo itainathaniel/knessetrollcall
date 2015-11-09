@@ -4,15 +4,14 @@ namespace KnessetRollCall\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-
-use KnessetRollCall\Console\Commands\LogEntries;
-use KnessetRollCall\Console\Commands\GrabParties;
-use KnessetRollCall\Console\Commands\GrabImage;
 use KnessetRollCall\Console\Commands\EntranceToPresence;
+use KnessetRollCall\Console\Commands\GrabImage;
+use KnessetRollCall\Console\Commands\GrabParties;
+use KnessetRollCall\Console\Commands\LogEntries;
+use KnessetRollCall\Console\Commands\MailCustomReport;
 use KnessetRollCall\Console\Commands\MailDailyReport;
 use KnessetRollCall\Console\Commands\MailMonthlyReport;
 use KnessetRollCall\Console\Commands\MailWeeklyReport;
-use KnessetRollCall\Console\Commands\MailCustomReport;
 
 class Kernel extends ConsoleKernel
 {
@@ -35,7 +34,8 @@ class Kernel extends ConsoleKernel
     /**
      * Define the application's command schedule.
      *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     * @param \Illuminate\Console\Scheduling\Schedule $schedule
+     *
      * @return void
      */
     protected function schedule(Schedule $schedule)

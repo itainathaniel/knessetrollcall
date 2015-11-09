@@ -1,24 +1,23 @@
-<?php namespace KnessetRollCall\Http\Controllers;
+<?php
 
-use KnessetRollCall\Http\Requests;
-use KnessetRollCall\Http\Requests\PageRequest;
-use KnessetRollCall\Http\Controllers\Controller;
+namespace KnessetRollCall\Http\Controllers;
+
 use KnessetRollCall\KnessetMember;
 
-class PagesController extends Controller {
-
+class PagesController extends Controller
+{
     public function index()
     {
         $membersInside = KnessetMember::where('isInside', '=', true)->get();
 
-        $membersLatestIn  = KnessetMember::where('isInside', '=',  true)->orderBy('updated_at', 'desc')->take(6)->get();
+        $membersLatestIn = KnessetMember::where('isInside', '=', true)->orderBy('updated_at', 'desc')->take(6)->get();
         $membersLatestOut = KnessetMember::where('isInside', '=', false)->orderBy('updated_at', 'desc')->take(6)->get();
 
         return view('pages.index', compact('membersInside', 'membersLatestIn', 'membersLatestOut'));
     }
 
     /**
-     * Return about page
+     * Return about page.
      *
      * @return mixed
      */
@@ -28,7 +27,7 @@ class PagesController extends Controller {
     }
 
     /**
-     * Return contact page
+     * Return contact page.
      *
      * @return mixed
      */
@@ -36,5 +35,4 @@ class PagesController extends Controller {
     {
         return view('pages.contact');
     }
-
 }
