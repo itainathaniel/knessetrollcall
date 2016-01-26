@@ -83,4 +83,11 @@ class KnessetMembersController extends Controller {
 
 		return view('knessetmembers.table')->withMembers($members);
 	}
+
+	public function fullscreen()
+	{
+		$members = KnessetMember::active()->where('party_id', '!=', 0)->get();
+
+		return view('knessetmembers.outside')->withMembers($members);
+	}
 }

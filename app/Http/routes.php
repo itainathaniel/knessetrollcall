@@ -30,6 +30,10 @@ Route::get('tweet/{id}', [
     'uses' => 'TweetsController@show'
 ]);
 
+Route::get('fullscreen', [
+    'as' => 'fullscreen_path',
+    'uses' => 'KnessetMembersController@fullscreen'
+]);
 Route::get('inside', [
     'as' => 'inside_path',
     'uses' => 'KnessetMembersController@inside'
