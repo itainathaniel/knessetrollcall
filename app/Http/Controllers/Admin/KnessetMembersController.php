@@ -2,29 +2,24 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use App\KnessetMember;
 use App\Party;
+use App\Http\Requests;
+use App\KnessetMember;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class KnessetMembersController extends Controller
 {
-
     public function index(Request $request)
     {
-
-
-
-        if (($request->input('party_id')) !== null) {
+       if (($request->input('party_id')) !== null) {
             $users = KnessetMember::wherePartyId($request->input('party_id'))->orderByName()->get();
         } elseif (($request->input('active')) !== null) {
             $users = KnessetMember::whereActive($request->input('active'))->orderByName()->get();
         } elseif (($request->input('isInside')) !== null) {
             $users = KnessetMember::where('isInside', $request->input('isInside'))->orderByName()->get();
         } elseif (($request->input('party_is_coalition')) !== null) {
-			$users = KnessetMember::whereIn('party_id', function($query) {
+            $users = KnessetMember::whereIn('party_id', function($query) {
 				$query->select('id')->from('parties')->whereIsCoalition(true);
             })->orderByName()->get();
         } else {
@@ -44,17 +39,16 @@ class KnessetMembersController extends Controller
     public function update(Request $request, KnessetMember $knessetMember)
     {
         $this->validate($request, [
-            'knesset_id' => 'required',
-            'party_id' => 'required',
-            'name' => 'required',
-            'image' => 'required',
-            'isInside' => 'required|boolean',
-            'active' => 'required|boolean',
+            'knesset_id'    => 'required',
+            'party_id'      => 'required',
+            'name'          => 'required',
+            'image'         => 'required',
+            'isInside'      => 'required|boolean',
+            'active'        => 'required|boolean',
         ]);
 
         $knessetMember->update($request->all());
 
         return redirect()->back();
     }
-
 }

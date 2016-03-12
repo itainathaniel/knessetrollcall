@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use App\KnessetMember;
 use Yangqi\Htmldom\Htmldom;
+use Illuminate\Console\Command;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class GrabImage extends Command
 {
@@ -44,7 +44,7 @@ class GrabImage extends Command
 
         $tds = $html->getElementById('dlMkMembers')->find('td');
 
-        $members = array();
+        $members = [];
 
         foreach ($tds as $k => $td) {
             $a = $td->find('a', 0);

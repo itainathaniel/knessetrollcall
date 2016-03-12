@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\User;
 use App\Http\Requests;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use App\Http\Requests\UpdateUser;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
 class UsersController extends Controller
 {
-
     public function index(Request $request)
     {
         if (($request->input('admin')) !== null) {
@@ -28,9 +27,6 @@ class UsersController extends Controller
             $users = User::all();
         }
 
-
-
-
         return view('admin.users.index', compact('users'));
     }
 
@@ -46,5 +42,4 @@ class UsersController extends Controller
 
         return redirect()->back();
     }
-
 }

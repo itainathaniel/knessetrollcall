@@ -2,12 +2,11 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use App\KnessetMember;
+use Illuminate\Database\Eloquent\Model;
 
 class EntranceLog extends Model
 {
-
 	public function knessetmembers()
 	{
 		return $this->belongsTo(KnessetMember::class);
@@ -19,5 +18,4 @@ class EntranceLog extends Model
 
         $this->save();
     }
-
 }

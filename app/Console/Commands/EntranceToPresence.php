@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Presence;
+use App\EntranceLog;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use App\EntranceLog;
-use App\Presence;
 
 class EntranceToPresence extends Command
 {
@@ -52,22 +52,24 @@ class EntranceToPresence extends Command
             $temp = EntranceLog::whereKnessetmembersId($log['knessetmembers_id'])->where('isInside', '=', true)->where('id', '<', $log['id'])->orderBy('id', 'desc')->firstOrFail();
 
             try {
-                $presence = Presence::whereKnessetmemberId($log['knessetmembers_id'])->where('day', $temp['created_at']->toDateString())->firstOrFail();
-                $presence->work+= $temp['created_at']->diffInMinutes($log['created_at']);
-                $this->comment('OLD work: ' . $presence->work);
+                $presence = Presence::whereKnessetmemberId($log['knessetmembers_id'])
+                    ->where('day', $temp['created_at']
+                    ->toDateString())->firstOrFail();
+                $presence->work += $temp['created_at']->diffInMinutes($log['created_at']);
+                $this->comment('OLD work: '.$presence->work);
             } catch (ModelNotFoundException $e) {
                 $presence = new Presence();
                 $presence->knessetmember_id = $log['knessetmembers_id'];
                 $presence->day = $temp['created_at']->toDateString();
                 $presence->work = $temp['created_at']->diffInMinutes($log['created_at']);
-                $this->comment('NEW work: ' . $presence->work);
+                $this->comment('NEW work: '.$presence->work);
             }
             $presence->save();
 
             $temp->processed();
             $log->processed();
 
-            $this->info('KM '.$log['knessetmembers_id'].' worked '.round($presence->work/60, 2).' hours on '.$log['created_at'].' - '.$temp['created_at']);
+            $this->info('KM '.$log['knessetmembers_id'].' worked '.round($presence->work / 60, 2).' hours on '.$log['created_at'].' - '.$temp['created_at']);
         }
     }
 }

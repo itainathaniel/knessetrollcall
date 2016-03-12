@@ -45,7 +45,7 @@ class MailDailyReport extends Command
         $report = new ReportsController($start_time, $end_time);
         $report->setView('emails.daily');
 
-        Mail::send('emails.raw', ['content' => $report->emailContent()], function($message){
+        Mail::send('emails.raw', ['content' => $report->emailContent()], function($message) {
             $message->to('itainathaniel@gmail.com')->subject(Lang::get('emails.daily-report.subject'));
         });
     }

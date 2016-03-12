@@ -2,18 +2,18 @@
 
 namespace App\Console\Commands;
 
-use App\Events\errorFetchingLogEntries;
-use App\Events\newKnessetMember;
 use Log;
-use Illuminate\Console\Command;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Database\QueryException;
-use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\Lang;
+use App\Tweet;
 use App\EntranceLog;
 use App\KnessetMember;
-use App\Tweet;
 use Yangqi\Htmldom\Htmldom;
+use Illuminate\Console\Command;
+use App\Events\newKnessetMember;
+use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Event;
+use App\Events\errorFetchingLogEntries;
+use Illuminate\Database\QueryException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class LogEntries extends Command
 {
@@ -60,9 +60,9 @@ class LogEntries extends Command
 
         $tds = $html->getElementById('dlMkMembers')->find('td');
 
-        $dlMkMembers = array();
-        $membersIn = array();
-        $membersOut = array();
+        $dlMkMembers = [];
+        $membersIn = [];
+        $membersOut = [];
 
         foreach ($tds as $k => $td) {
             $a = $td->find('a', 0);
@@ -76,7 +76,7 @@ class LogEntries extends Command
 
         $tds = $html->getElementById('dlMinister')->find('td');
 
-        $dlMinister = array();
+        $dlMinister = [];
 
         foreach ($tds as $k => $td) {
             $a = $td->find('a', 0);
@@ -97,9 +97,7 @@ class LogEntries extends Command
             try {
                 $knessetMember = KnessetMember::whereKnessetId($member['knessetId'])->firstOrFail();
 
-                if ($knessetMember->isInside == $member['isInside']) {
-//                echo $knessetMember->name . ' is still ' . ($knessetMember->isInside ? 'inside' : 'outside') . ' the Knesset building<br>';
-                } else {
+                if ($knessetMember->isInside != $member['isInside']) {
                     $knessetMember->updatePresence($member['isInside']);
 
                     $EntranceLog = new EntranceLog();
@@ -109,18 +107,11 @@ class LogEntries extends Command
 
                     if ($knessetMember->isInside) {
                         $membersIn[] = $knessetMember;
-//                        Event::fire(new knessetMemberIn, array($knessetMember));
                     } else {
                         $membersOut[] = $knessetMember;
-//                        Event::fire(new knessetMemberOut, array($knessetMember));
                     }
-
-//                    $Tweet = new Tweet();
-//                    $Tweet['tweet'] = $knessetMember->name . ' is now ' . ($knessetMember->isInside ? 'inside' : 'outside') . ' the Knesset building';
-//                    $Tweet->save();
                 }
             } catch (ModelNotFoundException $e) {
-                // echo $e->getMessage();
                 try {
                     $KnessetMember = new KnessetMember();
 
@@ -146,11 +137,6 @@ class LogEntries extends Command
                 $members2tweet[] = $member->name;
                 $membersIds2tweet[] = $member->id;
             }
-
-//            $Tweet = new Tweet();
-//            $Tweet['tweet'] = Lang::choice('tweets.enter', count($members2tweet), array('members' => implode(', ', $members2tweet)));
-//            $Tweet['metadata'] = json_encode(['ids' => $membersIds2tweet, 'action' => 1]);
-//            $Tweet->save();
         }
 
         if (!empty($membersOut)) {
@@ -160,15 +146,10 @@ class LogEntries extends Command
                 $members2tweet[] = $member->name;
                 $membersIds2tweet[] = $member->id;
             }
-
-//            $Tweet = new Tweet();
-//            $Tweet['tweet'] = Lang::choice('tweets.exit', count($members2tweet), array('members' => implode(', ', $members2tweet)));
-//            $Tweet['metadata'] = json_encode(['ids' => $membersIds2tweet, 'action' => 0]);
-//            $Tweet->save();
         }
 
         $this->info(count($membersIn).' נכנסו');
         $this->info(count($membersOut).' יצאו');
-        Log::notice(count($membersIn) . ' in, ' . count($membersOut) . ' out');
+        Log::notice(count($membersIn).' in, '.count($membersOut).' out');
     }
 }

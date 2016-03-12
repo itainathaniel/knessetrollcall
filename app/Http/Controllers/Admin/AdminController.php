@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-use App\KnessetMember;
-use App\Party;
 use App\User;
+use App\Party;
+use App\KnessetMember;
+use App\Http\Requests;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class AdminController extends Controller
 {
-
     public function index()
     {
         $users = User::latest()->limit(10)->get();
@@ -31,5 +29,4 @@ class AdminController extends Controller
             'total_parties', 'total_parties_coalition'
         ));
     }
-
 }

@@ -1,17 +1,20 @@
-<?php namespace App\Http\Controllers;
+<?php
 
-use Carbon\Carbon;
+namespace App\Http\Controllers;
+
 use DateTime;
-use Illuminate\Support\Facades\Cache;
-use App\EntranceLog;
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\ReportsController;
-use App\Http\Requests;
-use App\Http\Requests\PageRequest;
-use App\KnessetMember;
 use App\Party;
+use Carbon\Carbon;
+use App\EntranceLog;
+use App\Http\Requests;
+use App\KnessetMember;
+use App\Http\Requests\PageRequest;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
+use App\Http\Controllers\ReportsController;
 
-class KnessetMembersController extends Controller {
+class KnessetMembersController extends Controller
+{
 
 	/**
 	 * Display the specified resource.
