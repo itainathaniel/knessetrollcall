@@ -1,35 +1,35 @@
-<?php namespace App\Http\Controllers;
+<?php
 
-use App\Http\Requests;
-use App\Http\Requests\PageRequest;
-use App\Http\Controllers\Controller;
+namespace App\Http\Controllers;
+
 use App\KnessetMember;
 use App\Tweet;
 
-class TweetsController extends Controller {
-
-	/**
-	 * Display a listing of the resource.
-	 * GET /tweets
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		$tweets = Tweet::latest()->take(100)->get();
+class TweetsController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     * GET /tweets.
+     *
+     * @return Response
+     */
+    public function index()
+    {
+        $tweets = Tweet::latest()->take(100)->get();
 
         return view('tweets.index', compact('tweets'));
-	}
+    }
 
-	/**
-	 * Display the specified resource.
-	 * GET /tweets/{id}
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
+    /**
+     * Display the specified resource.
+     * GET /tweets/{id}.
+     *
+     * @param int $id
+     *
+     * @return Response
+     */
+    public function show($id)
+    {
         $tweet = Tweet::whereId($id)->firstOrFail();
 
         $metadata = json_decode($tweet->metadata, 1);
@@ -40,6 +40,5 @@ class TweetsController extends Controller {
         }
 
         return view('tweets.show', compact('tweet', 'knessetMembers'));
-	}
-
+    }
 }

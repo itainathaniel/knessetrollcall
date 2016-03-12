@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class KnessetMember extends Model
 {
-
     protected $table = 'knessetmembers';
 
     protected $fillable = [
@@ -39,27 +38,32 @@ class KnessetMember extends Model
         return $this->belongsTo('App\Party');
     }
 
-    public function updatePresence($isInside) {
+    public function updatePresence($isInside)
+    {
         $this->isInside = $isInside;
 
         $this->save();
     }
 
-    public function updateImage($image) {
+    public function updateImage($image)
+    {
         $this->image = $image;
 
         $this->save();
     }
 
-    public function image_big() {
+    public function image_big()
+    {
         return str_replace('-s.jpg', '.jpg', $this->image);
     }
 
-    public function image_path() {
+    public function image_path()
+    {
         return 'http://www.knesset.gov.il'.$this->image;
     }
 
-    public function image_big_path() {
+    public function image_big_path()
+    {
         return 'http://www.knesset.gov.il'.str_replace('-s.jpg', '.jpg', $this->image);
     }
 
@@ -86,5 +90,4 @@ class KnessetMember extends Model
     {
         return Presence::whereKnessetmemberId($this->id)->where('day', '>=', (new Carbon())->firstOfMonth())->sum('work');
     }
-
 }

@@ -2,17 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Presence;
 use App\KnessetMember;
-use App\Http\Requests;
-use Illuminate\Http\Request;
+use App\Presence;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
 
 class ReportsController extends Controller
 {
-
     protected $start_date;
 
     protected $end_date;
