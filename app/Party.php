@@ -7,10 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Party extends Model
 {
-
     protected $fillable = [
         'name',
-        'is_coalition'
+        'is_coalition',
     ];
 
     public function knessetMembers()
@@ -31,6 +30,7 @@ class Party extends Model
     public function presence_today()
     {
         $members = $this->knessetMembers()->pluck('id');
+
         return Presence::whereIn('knessetmember_id', $members)->where('day', date('Y-m-d'))->sum('work');
     }
 
@@ -41,13 +41,14 @@ class Party extends Model
         }
 
         $members = $this->knessetMembers()->pluck('id');
+
         return Presence::whereIn('knessetmember_id', $members)->where('day', '>=', date('Y-m-d', strtotime('last sunday', time())))->sum('work');
     }
 
     public function presence_month()
     {
         $members = $this->knessetMembers()->pluck('id');
+
         return Presence::whereIn('knessetmember_id', $members)->where('day', '>=', (new Carbon())->firstOfMonth())->sum('work');
     }
-
 }

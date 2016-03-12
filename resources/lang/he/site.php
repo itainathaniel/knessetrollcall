@@ -13,5 +13,5 @@ return [
         'link-contact'  => 'יצירת קשר',
         'link-itai'     => 'איתי נתנאל',
         'link-facebook' => 'פייסבוק',
-    ]
+    ],
 ];

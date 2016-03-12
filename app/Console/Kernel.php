@@ -2,17 +2,16 @@
 
 namespace App\Console;
 
-use Illuminate\Console\Scheduling\Schedule;
-use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-
-use App\Console\Commands\LogEntries;
-use App\Console\Commands\GrabParties;
-use App\Console\Commands\GrabImage;
 use App\Console\Commands\EntranceToPresence;
+use App\Console\Commands\GrabImage;
+use App\Console\Commands\GrabParties;
+use App\Console\Commands\LogEntries;
+use App\Console\Commands\MailCustomReport;
 use App\Console\Commands\MailDailyReport;
 use App\Console\Commands\MailMonthlyReport;
 use App\Console\Commands\MailWeeklyReport;
-use App\Console\Commands\MailCustomReport;
+use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
@@ -35,7 +34,8 @@ class Kernel extends ConsoleKernel
     /**
      * Define the application's command schedule.
      *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+     * @param \Illuminate\Console\Scheduling\Schedule $schedule
+     *
      * @return void
      */
     protected function schedule(Schedule $schedule)

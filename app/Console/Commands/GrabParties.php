@@ -2,12 +2,12 @@
 
 namespace App\Console\Commands;
 
-use App\Party;
 use App\KnessetMember;
-use Yangqi\Htmldom\Htmldom;
+use App\Party;
 use Illuminate\Console\Command;
-use Psy\Exception\ErrorException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Psy\Exception\ErrorException;
+use Yangqi\Htmldom\Htmldom;
 
 class GrabParties extends Command
 {
@@ -46,6 +46,7 @@ class GrabParties extends Command
 
         if (count($members) == 0) {
             $this->comment('No members to update.');
+
             return;
         }
 

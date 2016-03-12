@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Presence;
 use App\EntranceLog;
+use App\Presence;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 

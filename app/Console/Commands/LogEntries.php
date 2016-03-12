@@ -2,18 +2,16 @@
 
 namespace App\Console\Commands;
 
-use Log;
-use App\Tweet;
 use App\EntranceLog;
-use App\KnessetMember;
-use Yangqi\Htmldom\Htmldom;
-use Illuminate\Console\Command;
-use App\Events\newKnessetMember;
-use Illuminate\Support\Facades\Lang;
-use Illuminate\Support\Facades\Event;
 use App\Events\errorFetchingLogEntries;
-use Illuminate\Database\QueryException;
+use App\Events\newKnessetMember;
+use App\KnessetMember;
+use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Event;
+use Log;
+use Yangqi\Htmldom\Htmldom;
 
 class LogEntries extends Command
 {
@@ -55,6 +53,7 @@ class LogEntries extends Command
             Log::alert($error);
             $this->error($error);
             Event::fire(new errorFetchingLogEntries($error));
+
             return;
         }
 

@@ -3,9 +3,9 @@
 namespace App\Console\Commands;
 
 use App\KnessetMember;
-use Yangqi\Htmldom\Htmldom;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Yangqi\Htmldom\Htmldom;
 
 class GrabImage extends Command
 {

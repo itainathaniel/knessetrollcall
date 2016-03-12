@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\User;
-use App\Party;
-use App\KnessetMember;
-use App\Http\Requests;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\KnessetMember;
+use App\Party;
+use App\User;
 
 class AdminController extends Controller
 {

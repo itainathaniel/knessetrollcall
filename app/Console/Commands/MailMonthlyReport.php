@@ -2,11 +2,11 @@
 
 namespace App\Console\Commands;
 
+use App\Http\Controllers\ReportsController;
 use DateTime;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Mail;
-use App\Http\Controllers\ReportsController;
 
 class MailMonthlyReport extends Command
 {
@@ -47,7 +47,7 @@ class MailMonthlyReport extends Command
         $report = new ReportsController($start->getTimestamp(), $end->getTimestamp());
         $report->setView('emails.monthly');
 
-        Mail::send('emails.raw', ['content' => $report->emailContent()], function($message) {
+        Mail::send('emails.raw', ['content' => $report->emailContent()], function ($message) {
             $message->to('itainathaniel@gmail.com')->subject(Lang::get('emails.monthly-report.subject'));
         });
     }
