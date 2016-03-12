@@ -1,5 +1,10 @@
 <?php
 
+Route::macro('after', function ($callback) {
+    $this->events->listen('router.filter:after:newrelic-patch', $callback);
+    // https://gist.github.com/migrs/716cf7218e6953ee1789
+});
+
 Route::get('', 'PagesController@index');
 Route::get('about', 'PagesController@about');
 Route::get('contact', 'PagesController@contact');
