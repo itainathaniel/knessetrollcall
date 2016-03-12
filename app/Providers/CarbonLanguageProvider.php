@@ -1,4 +1,4 @@
-<?php namespace KnessetRollCall\Providers;
+<?php namespace App\Providers;
 
 use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;

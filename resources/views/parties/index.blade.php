@@ -16,7 +16,9 @@
                     @endif
                     <div class="col-md-12 clearfix">
                         <div class="page-header">
-                            <h2>{!! link_to_route('party_path', $member->party->name, ['id' => $member->party->id]) !!}</h2>
+                            <h2>
+                                <a href="{{ route('party_path', [$member->party]) }}">{{ $member->party->name }}
+                            </h2>
                         </div>
                         <div class="users-sniplet">
                     <?php $party = $member->party->name; ?>

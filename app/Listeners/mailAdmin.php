@@ -1,14 +1,14 @@
 <?php
 
-namespace KnessetRollCall\Listeners;
+namespace App\Listeners;
 
 use Illuminate\Support\Facades\Artisan;
-use KnessetRollCall\Events\newKnessetMember;
+use App\Events\newKnessetMember;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Mail;
-use KnessetRollCall\KnessetMember;
+use App\KnessetMember;
 
 class mailAdmin
 {

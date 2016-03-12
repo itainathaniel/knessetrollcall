@@ -1,9 +1,9 @@
 <?php
 
-namespace KnessetRollCall;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use KnessetRollCall\KnessetMember;
+use App\KnessetMember;
 
 class EntranceLog extends Model
 {

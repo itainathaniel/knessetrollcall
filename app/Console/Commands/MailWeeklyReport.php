@@ -1,11 +1,11 @@
 <?php
 
-namespace KnessetRollCall\Console\Commands;
+namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Mail;
-use KnessetRollCall\Http\Controllers\ReportsController;
+use App\Http\Controllers\ReportsController;
 
 class MailWeeklyReport extends Command
 {

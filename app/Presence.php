@@ -1,6 +1,6 @@
 <?php
 
-namespace KnessetRollCall;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,7 +9,7 @@ class Presence extends Model
 
     public function knessetmember()
     {
-        return $this->belongsTo('KnessetRollCall\KnessetMember');
+        return $this->belongsTo('App\KnessetMember');
     }
 
     public function minutesToHours($minutes='')

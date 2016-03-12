@@ -1,6 +1,6 @@
 <?php
 
-namespace KnessetRollCall;
+namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -36,7 +36,7 @@ class KnessetMember extends Model
 
     public function party()
     {
-        return $this->belongsTo('KnessetRollCall\Party');
+        return $this->belongsTo('App\Party');
     }
 
     public function updatePresence($isInside) {

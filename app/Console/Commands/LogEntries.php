@@ -1,18 +1,18 @@
 <?php
 
-namespace KnessetRollCall\Console\Commands;
+namespace App\Console\Commands;
 
-use KnessetRollCall\Events\errorFetchingLogEntries;
-use KnessetRollCall\Events\newKnessetMember;
+use App\Events\errorFetchingLogEntries;
+use App\Events\newKnessetMember;
 use Log;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Lang;
-use KnessetRollCall\EntranceLog;
-use KnessetRollCall\KnessetMember;
-use KnessetRollCall\Tweet;
+use App\EntranceLog;
+use App\KnessetMember;
+use App\Tweet;
 use Yangqi\Htmldom\Htmldom;
 
 class LogEntries extends Command

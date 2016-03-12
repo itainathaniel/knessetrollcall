@@ -1,6 +1,6 @@
 <?php
 
-namespace KnessetRollCall\Providers;
+namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

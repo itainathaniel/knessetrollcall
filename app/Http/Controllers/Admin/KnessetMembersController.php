@@ -1,13 +1,13 @@
 <?php
 
-namespace KnessetRollCall\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 
-use KnessetRollCall\Http\Requests;
-use KnessetRollCall\Http\Controllers\Controller;
-use KnessetRollCall\KnessetMember;
-use KnessetRollCall\Party;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use App\KnessetMember;
+use App\Party;
 
 class KnessetMembersController extends Controller
 {

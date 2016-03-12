@@ -1,10 +1,10 @@
 <?php
 
-namespace KnessetRollCall\Console\Commands;
+namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use KnessetRollCall\KnessetMember;
+use App\KnessetMember;
 use Yangqi\Htmldom\Htmldom;
 
 class GrabImage extends Command

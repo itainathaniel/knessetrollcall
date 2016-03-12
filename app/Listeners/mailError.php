@@ -1,8 +1,8 @@
 <?php
 
-namespace KnessetRollCall\Listeners;
+namespace App\Listeners;
 
-use KnessetRollCall\Events\errorFetchingLogEntries;
+use App\Events\errorFetchingLogEntries;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Facades\Lang;

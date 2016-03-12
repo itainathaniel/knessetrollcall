@@ -1,6 +1,6 @@
 <?php
 
-namespace KnessetRollCall\Providers;
+namespace App\Providers;
 
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -14,7 +14,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $namespace = 'KnessetRollCall\Http\Controllers';
+    protected $namespace = 'App\Http\Controllers';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -26,12 +26,12 @@ class RouteServiceProvider extends ServiceProvider
     {
         parent::boot($router);
 
-        $router->model('member', 'KnessetRollCall\KnessetMember');
-        $router->model('party', 'KnessetRollCall\Party');
-        $router->model('user', 'KnessetRollCall\User');
-        $router->model('knessetmembers', 'KnessetRollCall\KnessetMember');
-        $router->model('parties', 'KnessetRollCall\Party');
-        $router->model('users', 'KnessetRollCall\User');
+        $router->model('member', 'App\KnessetMember');
+        $router->model('party', 'App\Party');
+        $router->model('user', 'App\User');
+        $router->model('knessetmembers', 'App\KnessetMember');
+        $router->model('parties', 'App\Party');
+        $router->model('users', 'App\User');
     }
 
     /**

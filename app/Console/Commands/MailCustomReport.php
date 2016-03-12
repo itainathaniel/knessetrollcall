@@ -1,13 +1,13 @@
 <?php
 
-namespace KnessetRollCall\Console\Commands;
+namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use DateTime;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Mail;
-use KnessetRollCall\Http\Controllers\ReportsController;
-use KnessetRollCall\Presence;
+use App\Http\Controllers\ReportsController;
+use App\Presence;
 
 class MailCustomReport extends Command
 {

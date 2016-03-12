@@ -20,13 +20,21 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            {!! link_to_action('Admin\AdminController@index', Lang::get('admin.nav.top.home'), null, ['class' => 'navbar-brand']) !!}
+            <a href="{{ action('Admin\AdminController@index') }}" class="navbar-brand">
+                {{ Lang::get('admin.nav.top.home') }}
+            </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li>{!! link_to_action('Admin\UsersController@index', Lang::get('admin.nav.top.users')) !!}</li>
-                <li>{!! link_to_action('Admin\KnessetMembersController@index', Lang::get('admin.nav.top.knessetmembers')) !!}</li>
-                <li>{!! link_to_action('Admin\PartiesController@index', Lang::get('admin.nav.top.parties')) !!}</li>
+                <li>
+                    <a href="{{ action('Admin\UsersController@index') }}">{{ Lang::get('admin.nav.top.users') }}</a>
+                </li>
+                <li>
+                    <a href="{{ action('Admin\KnessetMembersController@index') }}">{{ Lang::get('admin.nav.top.knessetmembers') }}</a>
+                </li>
+                <li>
+                    <a href="{{ action('Admin\PartiesController@index') }}">{{ Lang::get('admin.nav.top.parties') }}</a>
+                </li>
             </ul>
             <form class="navbar-form navbar-left">
                 <input type="text" class="form-control" placeholder="חיפוש...">
@@ -39,17 +47,32 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li>{!! link_to_action('Admin\AdminController@index', Lang::get('admin.nav.top.home')) !!}</li>
-                <li>{!! link_to_action('UsersController@edit', Auth::user()->name) !!}</li>
+                <li>
+                    <a href="{{ action('Admin\AdminController@index') }}">{{ Lang::get('admin.nav.top.home') }}
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ action('UsersController@edit') }}">{{ Auth::user()->name }}
+                    </a>
+                </li>
             </ul>
             <ul class="nav nav-sidebar">
-                <li>{!! link_to_action('Admin\UsersController@index', Lang::get('admin.nav.top.users')) !!}</li>
+                <li>
+                    <a href="{{ action('Admin\UsersController@index') }}">{{ Lang::get('admin.nav.top.users') }}
+                    </a>
+                </li>
             </ul>
             <ul class="nav nav-sidebar">
-                <li>{!! link_to_action('Admin\KnessetMembersController@index', Lang::get('admin.nav.top.knessetmembers')) !!}</li>
+                <li>
+                    <a href="{{ action('Admin\KnessetMembersController@index') }}">{{ Lang::get('admin.nav.top.knessetmembers') }}
+                    </a>
+                </li>
             </ul>
             <ul class="nav nav-sidebar">
-                <li>{!! link_to_action('Admin\PartiesController@index', Lang::get('admin.nav.top.parties')) !!}</li>
+                <li>
+                    <a href="{{ action('Admin\PartiesController@index') }}">{{ Lang::get('admin.nav.top.parties') }}
+                    </a>
+                </li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

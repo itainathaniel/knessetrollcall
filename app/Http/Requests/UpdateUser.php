@@ -1,9 +1,9 @@
 <?php
 
-namespace KnessetRollCall\Http\Requests;
+namespace App\Http\Requests;
 
 use Illuminate\Support\Facades\Auth;
-use KnessetRollCall\Http\Requests\Request;
+use App\Http\Requests\Request;
 
 class UpdateUser extends Request
 {

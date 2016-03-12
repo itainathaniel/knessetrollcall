@@ -1,8 +1,8 @@
 <?php
 
-namespace KnessetRollCall\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth;
 
-use KnessetRollCall\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class PasswordController extends Controller

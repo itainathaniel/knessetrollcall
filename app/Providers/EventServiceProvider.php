@@ -1,6 +1,6 @@
 <?php
 
-namespace KnessetRollCall\Providers;
+namespace App\Providers;
 
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -13,14 +13,14 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-//        'KnessetRollCall\Events\SomeEvent' => [
-//            'KnessetRollCall\Listeners\EventListener',
+//        'App\Events\SomeEvent' => [
+//            'App\Listeners\EventListener',
 //        ],
-        'KnessetRollCall\Events\errorFetchingLogEntries' => [
-            'KnessetRollCall\Listeners\mailError',
+        'App\Events\errorFetchingLogEntries' => [
+            'App\Listeners\mailError',
         ],
-        'KnessetRollCall\Events\newKnessetMember' => [
-            'KnessetRollCall\Listeners\mailAdmin',
+        'App\Events\newKnessetMember' => [
+            'App\Listeners\mailAdmin',
         ],
 //        'knessetMemberIn' => [],
 //        'knessetMemberOut' => [],

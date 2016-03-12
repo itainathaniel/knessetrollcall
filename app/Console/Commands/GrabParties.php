@@ -1,11 +1,11 @@
 <?php
 
-namespace KnessetRollCall\Console\Commands;
+namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use KnessetRollCall\KnessetMember;
-use KnessetRollCall\Party;
+use App\KnessetMember;
+use App\Party;
 use Psy\Exception\ErrorException;
 use Yangqi\Htmldom\Htmldom;
 

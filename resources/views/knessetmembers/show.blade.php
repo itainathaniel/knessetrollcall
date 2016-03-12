@@ -20,7 +20,6 @@
                 <img src="http://www.knesset.gov.il/{{ $knessetMember->image_big() }}">
             </div>
             <h1 class="media-heading">{{ $knessetMember->name }}</h1>
-            {{--<h3>{{ link_to_route('party_path', $knessetMember->party->name, ['id' => $knessetMember->party->id]) }}</h3>--}}
         </div>
         <div class="col-md-2 col-md-offset-2">
             <div class="presence presence-today">
@@ -45,7 +44,7 @@
         <div class="col-md-12">
             <h3>{!! Lang::get('knessetmember.show.x_members_to_party_y', [
                 'members' => count($sameParty),
-                'party' => link_to_route('party_path', $knessetMember->party->name, ['id' => $knessetMember->party->id])
+                'party' => '<a href="'.route('party_path', [$knessetMember->party]).'">'.$knessetMember->party->name.'</a>'
             ] ) !!}</h3>
             <div class="users-sniplet">
                 @include('layouts.partials.membersList', ['members' => $sameParty, 'showRibbon' => true])

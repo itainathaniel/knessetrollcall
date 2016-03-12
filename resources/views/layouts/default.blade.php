@@ -22,33 +22,58 @@
             <nav>
                 <ul class="nav nav-pills pull-left">
                     @if (Auth::check())
-                        <li role="presentation" @yield('nav-active-profile', '')>{!! link_to_action('UsersController@edit', Auth::user()->name) !!}</li>
+                        <li role="presentation" @yield('nav-active-profile', '')>
+                            <a href="{{ action('UsersController@edit', [Auth::user()]) }}">{{ Auth::user()->name }}</a>
+                        </li>
                         @if (Auth::user()->admin)
-                            <li role="presentation" @yield('nav-active-admin', '')>{!! link_to_action('Admin\AdminController@index', 'אדמין') !!}</li>
+                            <li role="presentation" @yield('nav-active-admin', '')>
+                                <a href="{{ action('Admin\AdminController@index') }}">אדמין</a>
+                            </li>
                         @endif
                     @endif
-                    <li role="presentation" @yield('nav-active-index', '')>{!! link_to_action('PagesController@index', Lang::get('site.nav.main')) !!}</li>
-                    <li role="presentation" @yield('nav-active-parties', '')>{!! link_to_action('PartiesController@index', Lang::get('site.nav.parties')) !!}</li>
-                    <li role="presentation" @yield('nav-active-inside', '')>{!! link_to_route('inside_path', Lang::get('site.nav.nowInside')) !!}</li>
-                    <li role="presentation" @yield('nav-active-table', '')>{!! link_to_action('KnessetMembersController@allTimeTable', Lang::get('site.nav.table')) !!}</li>
-                    <li role="presentation" @yield('nav-active-about', '')>{!! link_to_action('PagesController@about', Lang::get('site.nav.about')) !!}</li>
-                    {{--<li role="presentation" @yield('nav-active-contact', '')>{!! link_to_action('PagesController@contact', Lang::get('index.footer.link-contact')) !!}</li>--}}
+                    <li role="presentation" @yield('nav-active-index', '')>
+                        <a href="{{ action('PagesController@index') }}">{{ Lang::get('site.nav.main') }}</a>
+                    </li>
+                    <li role="presentation" @yield('nav-active-parties', '')>
+                        <a href="{{ action('PartiesController@index') }}">{{ Lang::get('site.nav.parties') }}</a>
+                    </li>
+                    <li role="presentation" @yield('nav-active-inside', '')>
+                        <a href="{{ route('inside_path') }}">{{ Lang::get('site.nav.nowInside') }}</a>
+                    </li>
+                    <li role="presentation" @yield('nav-active-table', '')>
+                        <a href="{{ action('KnessetMembersController@allTimeTable') }}">{{ Lang::get('site.nav.table') }}</a>
+                    </li>
+                    <li role="presentation" @yield('nav-active-about', '')>
+                        <a href="{{ action('PagesController@about') }}">{{ Lang::get('site.nav.about') }}</a>
+                    </li>
                     @if (Auth::check())
-                        <li role="presentation">{!! link_to_action('Auth\AuthController@getLogout', 'התנתקות') !!}</li>
+                        <li role="presentation">
+                            <a href="{{ action('Auth\AuthController@getLogout') }}">התנתקות</a>
+                        </li>
                     @endif
                 </ul>
             </nav>
-            <h2 class="text-muted">{!! link_to_action('PagesController@index', Lang::get('index.site.name')) !!}</h2>
+            <h2 class="text-muted">
+                <a href="{{ action('PagesController@index') }}">{{ Lang::get('index.site.name') }}</a>
+            </h2>
         </div>
 
         @yield('content')
 
         <footer class="footer">
             <p>
-                {!! link_to('http://it.ai', Lang::get('site.footer.link-itai'), ['onclick' => "trackOutboundLink('http://it.ai'); return false;"]) !!} |
-                {!! link_to_action('PagesController@about', Lang::get('site.footer.link-about')) !!} |
-                {!! link_to_action('PagesController@contact', Lang::get('site.footer.link-contact'))  !!} |
-                <a href="https://www.facebook.com/knessetrollcall" style="color:rgb(58,87,149);">{{ Lang::get('site.footer.link-facebook') }}</a>
+                <a href="http://it.ai" onclick="trackOutboundLink('http://it.ai'); return false;">
+                    {{ Lang::get('site.footer.link-itai') }}
+                </a> |
+                <a href="{{ action('PagesController@about') }}">
+                    {{ Lang::get('site.footer.link-about') }}
+                </a> |
+                <a href="{{ action('PagesController@contact') }}">
+                    {{ Lang::get('site.footer.link-contact') }}
+                </a> |
+                <a href="https://www.facebook.com/knessetrollcall" style="color:rgb(58,87,149);">
+                    {{ Lang::get('site.footer.link-facebook') }}
+                </a>
             </p>
         </footer>
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace KnessetRollCall\Console\Commands;
+namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use KnessetRollCall\EntranceLog;
-use KnessetRollCall\Presence;
+use App\EntranceLog;
+use App\Presence;
 
 class EntranceToPresence extends Command
 {

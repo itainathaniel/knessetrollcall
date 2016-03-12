@@ -1,18 +1,18 @@
 <?php
 
-namespace KnessetRollCall\Console;
+namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
-use KnessetRollCall\Console\Commands\LogEntries;
-use KnessetRollCall\Console\Commands\GrabParties;
-use KnessetRollCall\Console\Commands\GrabImage;
-use KnessetRollCall\Console\Commands\EntranceToPresence;
-use KnessetRollCall\Console\Commands\MailDailyReport;
-use KnessetRollCall\Console\Commands\MailMonthlyReport;
-use KnessetRollCall\Console\Commands\MailWeeklyReport;
-use KnessetRollCall\Console\Commands\MailCustomReport;
+use App\Console\Commands\LogEntries;
+use App\Console\Commands\GrabParties;
+use App\Console\Commands\GrabImage;
+use App\Console\Commands\EntranceToPresence;
+use App\Console\Commands\MailDailyReport;
+use App\Console\Commands\MailMonthlyReport;
+use App\Console\Commands\MailWeeklyReport;
+use App\Console\Commands\MailCustomReport;
 
 class Kernel extends ConsoleKernel
 {

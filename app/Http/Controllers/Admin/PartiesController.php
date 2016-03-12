@@ -1,12 +1,12 @@
 <?php
 
-namespace KnessetRollCall\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin;
 
 
-use KnessetRollCall\Party;
+use App\Party;
 use Illuminate\Http\Request;
-use KnessetRollCall\Http\Requests;
-use KnessetRollCall\Http\Controllers\Controller;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
 
 class PartiesController extends Controller
 {

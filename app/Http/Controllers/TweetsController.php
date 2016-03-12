@@ -1,10 +1,10 @@
-<?php namespace KnessetRollCall\Http\Controllers;
+<?php namespace App\Http\Controllers;
 
-use KnessetRollCall\Http\Requests;
-use KnessetRollCall\Http\Requests\PageRequest;
-use KnessetRollCall\Http\Controllers\Controller;
-use KnessetRollCall\KnessetMember;
-use KnessetRollCall\Tweet;
+use App\Http\Requests;
+use App\Http\Requests\PageRequest;
+use App\Http\Controllers\Controller;
+use App\KnessetMember;
+use App\Tweet;
 
 class TweetsController extends Controller {
 

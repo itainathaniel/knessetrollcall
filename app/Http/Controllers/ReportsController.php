@@ -1,14 +1,14 @@
 <?php
 
-namespace KnessetRollCall\Http\Controllers;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
-use KnessetRollCall\Http\Requests;
-use KnessetRollCall\Http\Controllers\Controller;
-use KnessetRollCall\KnessetMember;
-use KnessetRollCall\Presence;
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use App\KnessetMember;
+use App\Presence;
 use TijsVerkoyen\CssToInlineStyles\CssToInlineStyles;
 
 class ReportsController extends Controller
@@ -99,9 +99,9 @@ class ReportsController extends Controller
      */
     private function setPresent()
     {
-        $this->present = Presence::select('knessetmember_id', DB::raw('sum(work) as minutes'))->whereIn('knessetmember_id', function ($query) {
-            $query->from('knessetmembers')->where('active', '=', true)->lists('id');
-        })
+        $knessetmemberids = KnessetMember::active()->pluck('id');
+        $this->present = Presence::select('knessetmember_id', DB::raw('sum(work) as minutes'))
+            ->whereIn('knessetmember_id', $knessetmemberids)
             ->whereBetween('day', [$this->start_date, $this->end_date])
             ->groupBy('knessetmember_id')
             ->orderBy('minutes', 'desc')

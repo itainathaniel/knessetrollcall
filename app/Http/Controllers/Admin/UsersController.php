@@ -1,13 +1,13 @@
 <?php
 
-namespace KnessetRollCall\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use KnessetRollCall\User;
-use KnessetRollCall\Http\Requests;
+use App\User;
+use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
-use KnessetRollCall\Http\Requests\UpdateUser;
-use KnessetRollCall\Http\Controllers\Controller;
+use App\Http\Requests\UpdateUser;
+use App\Http\Controllers\Controller;
 
 class UsersController extends Controller
 {

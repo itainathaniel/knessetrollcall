@@ -1,15 +1,15 @@
-<?php namespace KnessetRollCall\Http\Controllers;
+<?php namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use DateTime;
 use Illuminate\Support\Facades\Cache;
-use KnessetRollCall\EntranceLog;
-use KnessetRollCall\Http\Controllers\Controller;
-use KnessetRollCall\Http\Controllers\ReportsController;
-use KnessetRollCall\Http\Requests;
-use KnessetRollCall\Http\Requests\PageRequest;
-use KnessetRollCall\KnessetMember;
-use KnessetRollCall\Party;
+use App\EntranceLog;
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\ReportsController;
+use App\Http\Requests;
+use App\Http\Requests\PageRequest;
+use App\KnessetMember;
+use App\Party;
 
 class KnessetMembersController extends Controller {
 
