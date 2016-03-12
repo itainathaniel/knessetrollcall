@@ -21,6 +21,7 @@ elixir(function(mix) {
     };
 
     mix.sass('app.scss', 'resources/css');
+    mix.sass('homepage.scss', 'resources/css/homepage.css');
     mix.sass('admin.scss', 'resources/css/admin.css');
 
     mix.copy(paths.bootstrap + 'fonts/**', 'public/fonts');
@@ -33,6 +34,11 @@ elixir(function(mix) {
     ], 'public/css/all.css', 'resources/css');
 
     mix.styles([
+        'vendor/mmenu.css',
+        'homepage.css'
+    ], 'public/css/homepage.css', 'resources/css');
+
+    mix.styles([
         'vendor/bootstrap.min.css',
         'vendor/bootstrap-rtl.min.css',
         'admin.css'
@@ -40,6 +46,18 @@ elixir(function(mix) {
 
     mix.copy(paths.jquery + 'jquery.min.js', 'resources/js/vendor');
     mix.copy(paths.bootstrap + 'js/bootstrap.min.js', 'resources/js/vendor');
+
+    mix.scripts([
+        'vendor/jquery.min.js',
+        'vendor/highcharts.js',
+        'vendor/highcharts-more.js',
+        'vendor/jquery.mmenu.js',
+        'script.js'
+    ], 'public/js/app.js', 'resources/js');
+
+    mix.scripts([
+        'homepage.js'
+    ], 'public/js/homepage.js', 'resources/js');
 
     mix.scripts([
         'vendor/jquery.min.js',

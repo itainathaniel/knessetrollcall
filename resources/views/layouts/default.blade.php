@@ -12,7 +12,7 @@
         @include('layouts.partials.facebook')
 
         <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="/css/all.css">
+        <link rel="stylesheet" href="{{ asset('css/all.css') }}">
         @yield('head', '')
     </head>
 
@@ -53,6 +53,8 @@
         </footer>
 
     </div> <!-- /container -->
+
+    <script src="{{ asset('js/app.js') }}"></script>
 
     @include('layouts.partials.googleAnalytics')
 </body>

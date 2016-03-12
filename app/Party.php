@@ -23,6 +23,11 @@ class Party extends Model
         return $this->hasMany('KnessetRollCall\KnessetMember');
     }
 
+    public function inside()
+    {
+        return $this->knessetmembers->where('isInside', 1)->count();
+    }
+
     public function presence_today()
     {
         $members = $this->knessetMembers()->lists('id');

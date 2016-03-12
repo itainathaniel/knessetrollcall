@@ -9,6 +9,7 @@ use KnessetRollCall\Http\Controllers\ReportsController;
 use KnessetRollCall\Http\Requests;
 use KnessetRollCall\Http\Requests\PageRequest;
 use KnessetRollCall\KnessetMember;
+use KnessetRollCall\Party;
 
 class KnessetMembersController extends Controller {
 
@@ -86,8 +87,9 @@ class KnessetMembersController extends Controller {
 
 	public function fullscreen()
 	{
-		$members = KnessetMember::active()->where('party_id', '!=', 0)->get();
+		$members = KnessetMember::active()->where('party_id', '!=', 0)->orderBy('name')->get();
+		$parties = Party::where('name', '!=', '')->get();
 
-		return view('knessetmembers.fullscreen')->withMembers($members);
+		return view('knessetmembers.fullscreen')->withMembers($members)->withParties($parties);
 	}
 }

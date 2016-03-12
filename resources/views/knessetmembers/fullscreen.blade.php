@@ -13,65 +13,108 @@
 
 		<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="{{ asset('css/all.css') }}">
-		<style>
-			body,html{padding:0; margin:0;height:100%;width:100%;}
-			#full-screen {
-				width: 100%;
-				height: 100%;
-			}
-			.face {
-				width: 6.6667%;
-				width: calc(100%/15);
-				float: right;
-				position: relative;
-				height: 12.5%;
-				height: calc(100%/8);
-				overflow: hidden;
-			}
-			.face-outside {
-				opacity: 0.4;
-			}
-			.face img {
-				width: 92%;
-				margin: 0 4%;
-			}
-			.face h4 {
-				position: absolute;
-				bottom: 0;
-				right: 0;
-				margin: 0 4%;
-				left: 0;
-				padding: 5px;
-			}
-			.face h4 span {
-				color: white;
-				letter-spacing: -0.75px;
-				text-shadow: -1px -1px 6px black,
-							  1px  1px 6px black,
-							 -1px  1px 6px black,
-							  1px -1px 6px black;
-				font-size: 15px;
-			}
-		</style>
+		<link rel="stylesheet" href="{{ asset('css/homepage.css') }}">
 		@yield('head', '')
 	</head>
 
 <body>
-	<div id="full-screen">
-		@foreach ($members as $member)
-			<a href="{{ route('member_path', ['id' => $member->id]) }}">
-				<div class="face {{ ($member->isInside) ? 'face-inside' : 'face-outside' }}">
-					<img src="{{ $member->image_path() }}" alt="{{ $member->name }}" title="{{ $member->name }}">
-					<h4>
-						<span>{{ $member->name }}</span>
-					</h4>
-				</div>
-			</a>
-		@endforeach
+{{-- <nav id="menu">
+	<ul>
+		<li class="Label">Website</li>
+		<li><a href="/">Home</a></li>
+		<li><a href="/about/">About us</a></li>
+		<li>
+			<em class="Counter"></em>
+			<a href="/about/">About us</a>
+		</li>
+		<li class="Selected"><a href="/contact/">Contact</a></li>
+	</ul>
+</nav> --}}
+<div id="page"> <!-- the wrapper -->
+	{{-- <div id="header">
+		<a href="#menu" class="hamburger"></a>
+		כנסת רול קול
+	</div> --}}
+	<div id="content">
+		<div id="full-screen" class="show-all orientation-wide">
+			@foreach ($members as $member)
+				<a href="{{ route('member_path', ['id' => $member->id]) }}">
+					<div class="face {{ ($member->isInside) ? 'face-inside' : 'face-outside' }} js-party-{{ $member->party_id }} js-side-{{ $member->party->is_coalition }}">
+						<img src="{{ $member->image_path() }}" alt="{{ $member->name }}" title="{{ $member->name }}">
+						<h4>
+							<span>{{ $member->name }}</span>
+						</h4>
+					</div>
+				</a>
+			@endforeach
+		</div>
 	</div>
+	<div id="data">
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th colspan="2">קואליציה: 61 מתוך 61 ח״כים</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach ($parties->where('is_coalition', 1) as $party)
+					<tr>
+						<td>{{ $party->name }}</td>
+						<td>{{ $party->inside() }}</td>
+					</tr>
+				@endforeach
+			</tbody>
+		</table>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th colspan="2">אופוזיציה: 59 מתוך 59 ח״כים</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach ($parties->where('is_coalition', 0) as $party)
+					<tr>
+						<td>{{ $party->name }}</td>
+						<td>{{ $party->inside() }}</td>
+					</tr>
+				@endforeach
+			</tbody>
+		</table>
+	</div>
+	{{-- <div id="footer">&copy; איתי משה-חי נתנאל, {{ date('Y') }}</div> --}}
+</div>
 
-	<script src="{{ asset('js/app.js') }}"></script>
 
-	@include('layouts.partials.googleAnalytics')
+{{-- <div id="menu">
+	<div class="menu-wrapper">
+		<h3>חלוקה</h3>
+		<ul class="items">
+			<li>
+				<a href="#" class="js-click-side" data-side="1">קואליציה</a>
+			</li>
+			<li>
+				<a href="#" class="js-click-side" data-side="0">אופוזיציה</a>
+			</li>
+		</ul>
+	</div>
+	<div class="menu-wrapper">
+		<h3>מפלגות</h3>
+		<ul class="items">
+			@foreach (\KnessetRollCall\Party::all() as $party)
+				@if ($party->name !== '')
+					<li>
+						<a href="#" class="js-click-party" data-party="{{ $party->id }}">{{ $party->name }}</a>
+					</li>
+				@endif
+			@endforeach
+		</ul>
+	</div>
+</div> --}}
+
+<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/homepage.js') }}"></script>
+
+@include('layouts.partials.googleAnalytics')
+
 </body>
 </html>

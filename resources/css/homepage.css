@@ -1,0 +1,65 @@
+body, html,
+#page, #content, #data {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%; }
+
+#full-screen {
+  width: 100%;
+  height: 100%;
+  /*height: calc(100% - 40px);*/
+  position: fixed;
+  top: 0;
+  right: 0; }
+
+.orientation-wide .face {
+  width: 6.6667%;
+  width: calc(100%/15);
+  height: 12.5%;
+  height: calc(100%/8); }
+
+.orientation-high .face {
+  height: 6.6667%;
+  height: calc(100%/15);
+  width: 12.5%;
+  width: calc(100%/8); }
+
+.face {
+  float: right;
+  position: relative;
+  overflow: hidden; }
+
+.show-all .face-outside {
+  opacity: 0.4; }
+
+.face img {
+  width: 92%;
+  margin: 2% 4%;
+  height: 96%; }
+
+.face h4 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 0 4%;
+  left: 0;
+  padding: 5px; }
+
+.face h4 span {
+  color: white;
+  letter-spacing: -0.75px;
+  text-shadow: -1px -1px 6px black, 1px 1px 6px black, -1px 1px 6px black, 1px -1px 6px black;
+  font-size: 15px; }
+
+#data {
+  z-index: 99;
+  position: relative; }
+  #data table {
+    background-color: white;
+    width: 500px;
+    margin: 0 auto 50px;
+    padding: 20px; }
+
+#footer {
+  display: none; }
