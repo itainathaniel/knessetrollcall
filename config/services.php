@@ -19,8 +19,13 @@ return [
 //        'secret' => '',
 //    ],
 
-    'mandrill' => [
-        'secret' => env('MAIL_MANDRILL_API_KEY'),
+    // 'mandrill' => [
+    //     'secret' => env('MAIL_MANDRILL_API_KEY'),
+    // ],
+
+    'mailgun' => [
+        'domain' => env('MAILGUN_DOMAIN'),
+        'secret' => env('MAILGUN_SECRET'),
     ],
 
 //    'ses' => [
@@ -30,7 +35,7 @@ return [
 //    ],
 //
 //    'stripe' => [
-//        'model'  => KnessetRollCall\User::class,
+//        'model'  => App\User::class,
 //        'key' => '',
 //        'secret' => '',
 //    ],
