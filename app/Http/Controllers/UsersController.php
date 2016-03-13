@@ -26,15 +26,12 @@ class UsersController extends Controller
 
     public function edit()
     {
-        $user = User::find(Auth::user()->id)->firstOrFail();
-
-        return view('users.edit', compact('user'));
+        return view('users.edit', ['user' => Auth::user()]);
     }
 
     public function update(UpdateUser $request)
     {
-        $user = User::find(Auth::user()->id)->firstOrFail();
-        $user->updateSettings($request);
+        Auth::user()->updateSettings($request);
 
         return redirect()->back();
     }

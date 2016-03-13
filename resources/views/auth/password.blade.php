@@ -15,7 +15,7 @@
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-default">שליחת דואר אלקטרוני לאיפוס ססמה</button>
-                    <span class="help-block">עוד לא רשומים לאתר? <a href="{{ url('/register') }}">לחצו כאן</a> כדי להרשם</span>
+                    <span class="help-block">עוד לא רשום לאתר? <a href="{{ url('/register') }}">לחץ כאן</a> כדי להרשם</span>
                 </div>
             </form>
         </div>

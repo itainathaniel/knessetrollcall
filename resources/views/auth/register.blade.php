@@ -27,7 +27,7 @@
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-default">רישום</button>
-                    <span class="help-block">כבר רשומים לאתר? <a href="{{ url('/login') }}">לחצו כאן</a> לעבור למסך התחברות</span>
+                    <span class="help-block">כבר רשום לאתר? <a href="{{ url('/login') }}">לחץ כאן</a> לעבור למסך התחברות</span>
                 </div>
             </form>
         </div>

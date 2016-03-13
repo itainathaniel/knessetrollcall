@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-4">
-            <h1>רישום לאתר</h1>
+            <h1>התחברות לאתר</h1>
 
             @include('layouts.partials.errors')
 
@@ -19,8 +19,8 @@
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-default">התחברות</button>
-                    <span class="help-block pull-left"><a href="{{ url('/password/email') }}">שכחתם ססמה?</a></span>
-                    <span class="help-block">עוד לא רשומים לאתר? <a href="{{ url('/register') }}">לחצו כאן</a> כדי להרשם</span>
+                    <span class="help-block pull-left"><a href="{{ url('/password/email') }}">שכחת ססמה?</a></span>
+                    <span class="help-block">עוד לא רשום לאתר? <a href="{{ url('/register') }}">לחץ כאן</a> כדי להרשם</span>
                 </div>
             </form>
         </div>

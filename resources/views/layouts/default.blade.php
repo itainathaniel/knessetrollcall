@@ -23,7 +23,7 @@
                 <ul class="nav nav-pills pull-left">
                     @if (Auth::check())
                         <li role="presentation" @yield('nav-active-profile', '')>
-                            <a href="{{ action('UsersController@edit', [Auth::user()]) }}">{{ Auth::user()->name }}</a>
+                            <a href="{{ action('UsersController@edit') }}">{{ Auth::user()->name }}</a>
                         </li>
                         @if (Auth::user()->admin)
                             <li role="presentation" @yield('nav-active-admin', '')>
