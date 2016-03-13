@@ -67,4 +67,19 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
             $this->save();
         }
     }
+
+    public function dailyRecipients()
+    {
+        return $this->where('mail_daily', true)->get();
+    }
+
+    public function weeklyRecipients()
+    {
+        return $this->where('mail_weekly', true)->get();
+    }
+
+    public function monthlyRecipients()
+    {
+        return $this->where('mail_monthly', true)->get();
+    }
 }
