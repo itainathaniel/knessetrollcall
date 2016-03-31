@@ -212,7 +212,7 @@ return [
         'Html'      => Illuminate\Support\Facades\HtmlFacede::class,
         'Form'      => Illuminate\Support\Facades\FormFacede::class,
         'Htmldom'   => Yangqi\Htmldom\Htmldom::class,
-        'Bugsnag' => Bugsnag\BugsnagLaravel\BugsnagFacade::class,
+        'Bugsnag'   => Bugsnag\BugsnagLaravel\BugsnagFacade::class,
 
     ],
 
