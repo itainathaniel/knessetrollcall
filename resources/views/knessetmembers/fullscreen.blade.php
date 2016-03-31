@@ -4,6 +4,7 @@
 		<title>{{ Lang::get('index.site.title') }} @yield('title')</title>
 
 		<meta charset="utf-8">
+		<meta http-equiv="refresh" content="300">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="See which Israeli Knesset Member is in the Knesset">
 		<meta name="author" content="Itai Nathaniel">
