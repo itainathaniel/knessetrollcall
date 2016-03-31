@@ -2,8 +2,8 @@
 
 return [
     'site' => [
-        'name'      => 'כנסת Roll Call',
-        'title'     => 'כנסת Roll Call',
+        'name'      => 'כנסת רול קול',
+        'title'     => 'כנסת רול קול',
     ],
     'nav' => [
         'main'      => 'ראשי',
