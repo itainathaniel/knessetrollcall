@@ -18,27 +18,11 @@
 	</head>
 
 <body>
-{{-- <nav id="menu">
-	<ul>
-		<li class="Label">Website</li>
-		<li><a href="/">Home</a></li>
-		<li><a href="/about/">About us</a></li>
-		<li>
-			<em class="Counter"></em>
-			<a href="/about/">About us</a>
-		</li>
-		<li class="Selected"><a href="/contact/">Contact</a></li>
-	</ul>
-</nav> --}}
 <div id="page"> <!-- the wrapper -->
-	{{-- <div id="header">
-		<a href="#menu" class="hamburger"></a>
-		כנסת רול קול
-	</div> --}}
 	<div id="content">
 		<div id="full-screen" class="show-all orientation-wide">
 			@foreach ($members as $member)
-				<a href="{{ route('member_path', ['id' => $member->id]) }}">
+				<a href="{{ route('member_path', ['id' => $member->id]) }}" data-member="{{ $member }}" data-party="{{ $member->party }}">
 					<div class="face {{ ($member->isInside) ? 'face-inside' : 'face-outside' }} js-party-{{ $member->party_id }} js-side-{{ $member->party->is_coalition }}">
 						<img src="{{ $member->image_path() }}" alt="{{ $member->name }}" title="{{ $member->name }}">
 						<h4>
@@ -50,36 +34,29 @@
 		</div>
 	</div>
 	<div id="data">
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th colspan="2">קואליציה: 61 מתוך 61 ח״כים</th>
-				</tr>
-			</thead>
-			<tbody>
-				@foreach ($parties->where('is_coalition', 1) as $party)
+		@for ($i = 1; $i >= 0; $i--)
+			<table class="table table-striped">
+				<tbody>
+					<?php $count_in = 0; ?>
+					<?php $count_out = 0; ?>
+					@foreach ($parties->where('is_coalition', $i) as $party)
+						<?php $party_count_in = $party->inside(); ?>
+						<?php $party_count_out = $members->where('party_id', $party->id)->count(); ?>
+						<tr>
+							<td>{{ $party->name }}</td>
+							<td>{{ $party->inside() }} מתוך {{ $party_count_in }}</td>
+						</tr>
+						<?php $count_in += $party_count_in; ?>
+						<?php $count_out += $party_count_out; ?>
+					@endforeach
+				</tbody>
+				<thead>
 					<tr>
-						<td>{{ $party->name }}</td>
-						<td>{{ $party->inside() }}</td>
+						<th colspan="2">{{ $i }}: {{ $count_in }} מתוך {{ $count_out }} ח״כים</th>
 					</tr>
-				@endforeach
-			</tbody>
-		</table>
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th colspan="2">אופוזיציה: 59 מתוך 59 ח״כים</th>
-				</tr>
-			</thead>
-			<tbody>
-				@foreach ($parties->where('is_coalition', 0) as $party)
-					<tr>
-						<td>{{ $party->name }}</td>
-						<td>{{ $party->inside() }}</td>
-					</tr>
-				@endforeach
-			</tbody>
-		</table>
+				</thead>
+			</table>
+		@endfor
 	</div>
 	{{-- <div id="footer">&copy; איתי משה-חי נתנאל, {{ date('Y') }}</div> --}}
 </div>

@@ -1,10 +1,14 @@
+var $body,
+	$fullscreen,
+	$menu;
+
 $(function() {
 	// $('nav#menu').mmenu();
-});
+	$fullscreen = $('#full-screen');
 
-// var $body,
-// 	$fullscreen,
-// 	$menu;
+	handleWindowResize();
+	$(window).on('resize', handleWindowResize);
+});
 
 // $(document).ready(function(){
 // 	$body = $('body');
@@ -17,14 +21,14 @@ $(function() {
 // 	$('.hamburger').on('click', toggleHamburger);
 // });
 
-// function handleWindowResize() {
-// 	$fullscreen.removeClass('orientation-wide').removeClass('orientation-high');
-// 	if (window.innerWidth > window.innerHeight) {
-// 		$fullscreen.addClass('orientation-wide');
-// 	} else {
-// 		$fullscreen.addClass('orientation-high');
-// 	}
-// }
+function handleWindowResize() {
+	$fullscreen.removeClass('orientation-wide').removeClass('orientation-high');
+	if (window.innerWidth > window.innerHeight) {
+		$fullscreen.addClass('orientation-wide');
+	} else {
+		$fullscreen.addClass('orientation-high');
+	}
+}
 
 // function toggleHamburger() {
 // 	$body.toggleClass('menu-open')
