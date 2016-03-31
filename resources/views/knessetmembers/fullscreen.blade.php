@@ -41,16 +41,18 @@
 					<?php $count_in = 0; ?>
 					<?php $count_out = 0; ?>
 					@foreach ($parties->where('is_coalition', $i) as $party)
-						<?php $party_count_in = $party->inside(); ?>
 						<?php $party_count_out = $members->where('party_id', $party->id)->count(); ?>
-						<tr>
-							<td>
-								<a href="{{ route('party_path', [$party->id]) }}">{{ $party->name }}</a>
-							</td>
-							<td>{{ Lang::get('fullscreen.tables.out_of', ['inside' => $party->inside(), 'total' => $party_count_in]) }}</td>
-						</tr>
-						<?php $count_in += $party_count_in; ?>
-						<?php $count_out += $party_count_out; ?>
+						@if ($party_count_out)
+							<?php $party_count_in = $party->inside(); ?>
+							<tr>
+								<td>
+									<a href="{{ route('party_path', [$party->id]) }}">{{ $party->name }}</a>
+								</td>
+								<td>{{ Lang::get('fullscreen.tables.out_of', ['inside' => $party->inside(), 'total' => $party_count_out]) }}</td>
+							</tr>
+							<?php $count_in += $party_count_in; ?>
+							<?php $count_out += $party_count_out; ?>
+						@endif
 					@endforeach
 				</tbody>
 				<thead>
