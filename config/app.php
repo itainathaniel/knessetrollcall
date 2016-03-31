@@ -159,6 +159,7 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         Yangqi\Htmldom\HtmldomServiceProvider::class,
         BackupManager\Laravel\Laravel5ServiceProvider::class,
+        Bugsnag\BugsnagLaravel\BugsnagLaravelServiceProvider::class,
 
     ],
 
@@ -211,6 +212,7 @@ return [
         'Html'      => Illuminate\Support\Facades\HtmlFacede::class,
         'Form'      => Illuminate\Support\Facades\FormFacede::class,
         'Htmldom'   => Yangqi\Htmldom\Htmldom::class,
+        'Bugsnag' => Bugsnag\BugsnagLaravel\BugsnagFacade::class,
 
     ],
 

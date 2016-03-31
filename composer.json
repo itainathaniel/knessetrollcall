@@ -17,7 +17,8 @@
         "backup-manager/laravel": "^1.0@dev",
         "league/flysystem-dropbox": "^1.0@dev",
         "mailgun/mailgun-php": "~1.7.2",
-        "doctrine/dbal": "v2.5.4"
+        "doctrine/dbal": "v2.5.4",
+        "bugsnag/bugsnag-laravel": "1.*"
     },
     "require-dev": {
         "symfony/dom-crawler": "~3.0",
