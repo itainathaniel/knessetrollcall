@@ -43,8 +43,10 @@
 						<?php $party_count_in = $party->inside(); ?>
 						<?php $party_count_out = $members->where('party_id', $party->id)->count(); ?>
 						<tr>
-							<td>{{ $party->name }}</td>
-							<td>{{ $party->inside() }} מתוך {{ $party_count_in }}</td>
+							<td>
+								<a href="{{ route('party_path', [$party->id]) }}">{{ $party->name }}</a>
+							</td>
+							<td>{{ Lang::get('fullscreen.tables.out_of', ['inside' => $party->inside(), 'total' => $party_count_in]) }}</td>
 						</tr>
 						<?php $count_in += $party_count_in; ?>
 						<?php $count_out += $party_count_out; ?>
@@ -52,41 +54,19 @@
 				</tbody>
 				<thead>
 					<tr>
-						<th colspan="2">{{ $i }}: {{ $count_in }} מתוך {{ $count_out }} ח״כים</th>
+						<th colspan="2">
+							{{ Lang::get('fullscreen.tables.thead.title', [
+								'side' => Lang::get('fullscreen.tables.thead.side.'.$i),
+								'in' => $count_in,
+								'out' => $count_out
+							]) }}
+						</th>
 					</tr>
 				</thead>
 			</table>
 		@endfor
 	</div>
-	{{-- <div id="footer">&copy; איתי משה-חי נתנאל, {{ date('Y') }}</div> --}}
 </div>
-
-
-{{-- <div id="menu">
-	<div class="menu-wrapper">
-		<h3>חלוקה</h3>
-		<ul class="items">
-			<li>
-				<a href="#" class="js-click-side" data-side="1">קואליציה</a>
-			</li>
-			<li>
-				<a href="#" class="js-click-side" data-side="0">אופוזיציה</a>
-			</li>
-		</ul>
-	</div>
-	<div class="menu-wrapper">
-		<h3>מפלגות</h3>
-		<ul class="items">
-			@foreach (\KnessetRollCall\Party::all() as $party)
-				@if ($party->name !== '')
-					<li>
-						<a href="#" class="js-click-party" data-party="{{ $party->id }}">{{ $party->name }}</a>
-					</li>
-				@endif
-			@endforeach
-		</ul>
-	</div>
-</div> --}}
 
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/homepage.js') }}"></script>
