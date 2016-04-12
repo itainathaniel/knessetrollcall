@@ -51,19 +51,25 @@ class EntranceToPresence extends Command
         foreach ($entrance_logs as $log) {
             $temp = EntranceLog::whereKnessetmembersId($log['knessetmembers_id'])->where('isInside', '=', true)->where('id', '<', $log['id'])->orderBy('id', 'desc')->firstOrFail();
 
+            $work = 0;
+
             try {
                 $presence = Presence::whereKnessetmemberId($log['knessetmembers_id'])
-                    ->where('day', $temp['created_at']
-                    ->toDateString())->firstOrFail();
-                $presence->work += $temp['created_at']->diffInMinutes($log['created_at']);
-                $this->comment('OLD work: '.$presence->work);
+                    ->where('day', $temp['created_at']->toDateString())
+                    ->firstOrFail();
+
+                $work = $presence->work;
             } catch (ModelNotFoundException $e) {
                 $presence = new Presence();
                 $presence->knessetmember_id = $log['knessetmembers_id'];
                 $presence->day = $temp['created_at']->toDateString();
-                $presence->work = $temp['created_at']->diffInMinutes($log['created_at']);
-                $this->comment('NEW work: '.$presence->work);
             }
+
+            $presence->party_id = $presence->knessetmember->party_id;
+            $presence->is_coalition = $presence->knessetmember->party->is_coalition;
+            $presence->week_day = $temp['created_at']->format('w');
+            $presence->work = $work + $temp['created_at']->diffInMinutes($log['created_at']);
+
             $presence->save();
 
             $temp->processed();
