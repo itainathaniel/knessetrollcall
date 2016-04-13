@@ -23,7 +23,7 @@ class Party extends Model
     {
         parent::boot();
 
-        static::addGlobalScope('empty', function(Builder $builder) {
+        static::addGlobalScope('empty', function (Builder $builder) {
             $builder->where('name', '!=', '');
         });
     }
