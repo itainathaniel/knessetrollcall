@@ -3,14 +3,30 @@
 namespace App;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Party extends Model
 {
+
     protected $fillable = [
         'name',
         'is_coalition',
     ];
+
+    /**
+     * The "booting" method of the model.
+     *
+     * @return void
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('empty', function(Builder $builder) {
+            $builder->where('name', '!=', '');
+        });
+    }
 
     public function knessetMembers()
     {

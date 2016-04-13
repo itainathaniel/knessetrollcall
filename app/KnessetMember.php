@@ -23,6 +23,16 @@ class KnessetMember extends Model
         return $query->whereActive(1);
     }
 
+    public function scopeInside($query)
+    {
+        return $query->where('isInside', 1);
+    }
+
+    public function scopeOutside($query)
+    {
+        return $query->where('isInside', 0);
+    }
+
     public function scopeOrderByInside($query)
     {
         return $query->orderBy('isInside', 'desc');

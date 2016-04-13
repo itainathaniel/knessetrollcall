@@ -45,8 +45,6 @@ class KnessetMembersController extends Controller
 
     public function log(KnessetMember $knessetMember)
     {
-        $knessetMember = KnessetMember::whereId($knessetMember->id)->firstOrFail();
-
         $entranceLogs = EntranceLog::whereKnessetmembersId($knessetMember->id)->latest()->get();
 
         return view('knessetmembers.log', compact('knessetMember', 'entranceLogs'));
@@ -54,14 +52,14 @@ class KnessetMembersController extends Controller
 
     public function inside()
     {
-        $members = KnessetMember::where('isInside', '=', true)->get();
+        $members = KnessetMember::inside()->get();
 
         return view('knessetmembers.inside', compact('members'));
     }
 
     public function outside()
     {
-        $members = KnessetMember::where('isInside', '=', false)->where('party_id', '!=', 0)->get();
+        $members = KnessetMember::outside()->where('party_id', '!=', 0)->get();
 
         return view('knessetmembers.outside', compact('members'));
     }
@@ -86,7 +84,7 @@ class KnessetMembersController extends Controller
     public function fullscreen()
     {
         $members = KnessetMember::active()->where('party_id', '!=', 0)->orderBy('name')->get();
-        $parties = Party::where('name', '!=', '')->get();
+        $parties = Party::all();
 
         return view('knessetmembers.fullscreen')->withMembers($members)->withParties($parties);
     }

@@ -8,10 +8,10 @@ class PagesController extends Controller
 {
     public function index()
     {
-        $membersInside = KnessetMember::where('isInside', '=', true)->get();
+        $membersInside = KnessetMember::inside()->get();
 
-        $membersLatestIn = KnessetMember::where('isInside', '=', true)->orderBy('updated_at', 'desc')->take(6)->get();
-        $membersLatestOut = KnessetMember::where('isInside', '=', false)->orderBy('updated_at', 'desc')->take(6)->get();
+        $membersLatestIn = KnessetMember::inside()->orderBy('updated_at', 'desc')->take(6)->get();
+        $membersLatestOut = KnessetMember::outside()->orderBy('updated_at', 'desc')->take(6)->get();
 
         return view('pages.index', compact('membersInside', 'membersLatestIn', 'membersLatestOut'));
     }
