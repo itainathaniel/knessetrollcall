@@ -41,7 +41,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('krc:log')->everyFiveMinutes();
-        $schedule->command('krc:presence')->everyMinute(); // everyTenMinutes();
+        $schedule->command('krc:presence')->everyTenMinutes();
         $schedule->command('krc:mail:daily')->dailyAt('7:00');
         $schedule->command('krc:mail:weekly')->weekly()->sundays()->at('7:00');
         $schedule->command('krc:mail:monthly')->monthly()->at('7:00');
