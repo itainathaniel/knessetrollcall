@@ -62,7 +62,7 @@ class GrabParties extends Command
             $partyDom = $html->find('td.Name .DataText');
 
             // $party2 = iconv('ISO-8859-8', 'UTF-8', $party[0]->plaintext);
-            $partyName = trim($partyDom[0]->plaintext);
+            $partyName = $partyDom ? trim($partyDom[0]->plaintext) : '';
 
             try {
                 $Party = Party::whereName($partyName)->firstOrFail();
