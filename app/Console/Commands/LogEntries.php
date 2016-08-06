@@ -47,7 +47,8 @@ class LogEntries extends Command
     public function handle()
     {
         try {
-            $html = new Htmldom('http://www.knesset.gov.il/presence/heb/PresentList.aspx');
+            //$html = new Htmldom('http://www.knesset.gov.il/presence/heb/PresentList.aspx');
+            $html = new Htmldom('http://krc.tempurl.co.il/krc.php');
         } catch (\Exception $e) {
             $error = 'Error while fetching Knesset site.';
             Log::alert($error);
@@ -154,19 +155,5 @@ class LogEntries extends Command
         $this->info(count($membersIn).' נכנסו');
         $this->info(count($membersOut).' יצאו');
         Log::notice(count($membersIn).' in, '.count($membersOut).' out');
-    }
-    
-    public function backup()
-    {
-        try {
-            return new Htmldom('http://krc.tempurl.co.il/krc.php');
-        } catch (\Exception $e) {
-            $error = 'Error while fetching Knesset site backup source.';
-            Log::alert($error);
-            $this->error($error);
-            Event::fire(new errorFetchingLogEntries($error));
-            
-            return false;
-        }
     }
 }
