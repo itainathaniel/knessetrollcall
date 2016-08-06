@@ -55,11 +55,7 @@ class LogEntries extends Command
             $this->error($error);
             Event::fire(new errorFetchingLogEntries($error));
             
-            $html = $this->backup();
-            
-            if (!$html) {
-                return false;
-            }
+            return false;
         }
 
         $tds = $html->getElementById('dlMkMembers')->find('td');
